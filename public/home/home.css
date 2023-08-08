@@ -1,0 +1,20 @@
+#homeHeroSection {
+  /* background-color: red; */
+  background-color: var(--primary-color);
+  height: 100vh;
+  width: 100vw;
+}
+/* .heroSection {
+  height: 300px;
+  width: 70%;
+  background-color: red;
+} */
+/* .heroTitle {
+  width: 400px;
+} */
+.heroSub {
+  color: #ffffff;
+}
+.heroTitle span {
+  color: brown;
+}

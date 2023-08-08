@@ -1,0 +1,70 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+:root {
+  --font-size-base: 1rem;
+  --primary-color: #e6e7fb;
+  --secondary-color: #1c1e5a;
+  --tertiary-color: #1283fe;
+  --color-one: #000;
+  --color-two: #ffffff;
+  --view-width: 100vw;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+body {
+  background-color: #1c1e5a;
+}
+
+/* .navigationBar {
+  width: 100%;
+} */
+.topNav {
+  height: 2rem;
+  background-color: #1c1e5a;
+  /* background-color: #e6e7fb; */
+}
+.navbar {
+  /* padding: 0.5rem 0; */
+  /* height: 1rem; */
+  background-color: #ffffff;
+}
+.navContainer {
+  padding: 1rem 0;
+  /* background-color: aqua; */
+}
+.container {
+  width: 80%;
+  margin: 0 auto;
+}
+
+.primary-navigation {
+  width: 60%;
+  justify-content: space-between;
+  align-items: center;
+}
+.mobile-nav-toggle {
+  display: none;
+}
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  border: 0;
+}
+.flex {
+  display: flex;
+}
+.flex-col {
+  flex-direction: column;
+}
