@@ -12,9 +12,13 @@
 /* .heroTitle {
   width: 400px;
 } */
-.heroSub {
-  color: #ffffff;
-}
 .heroTitle span {
-  color: brown;
+  color: var(--tertiary-color);
+}
+.heroNextBtn {
+  border-radius: 50%;
+  border: 0.1875rem var(--secondary-color) solid;
+  padding: 1rem;
+  width: 100px;
+  height: 100px;
 }

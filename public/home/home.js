@@ -42,8 +42,15 @@ heroImgDiv.className = "heroImgDiv";
 heroCopy.append(heroSub, heroTitle, heroPrint);
 heroSection.append(heroCopy, heroImgDiv);
 
-const heroNextBtn = createDiv();
+const heroNextBtn = createA();
 heroNextBtn.className = "heroNextBtn";
+heroNextBtn.href = "#";
+
+const arrowNext = createImg();
+arrowNext.className = "arrowNext";
+
+heroNextBtn.appendChild(arrowNext);
+
 heroSectionContainer.append(heroSection, heroNextBtn);
 homeHeroSection.append(navigationBar, heroSectionContainer);
 

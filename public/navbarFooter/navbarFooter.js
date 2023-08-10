@@ -32,13 +32,8 @@ nav.className = "navbar";
 const navContainer = createDiv();
 navContainer.className = "navContainer container flex";
 
-const logo = createA();
-logo.href = "home.ejs";
-logo.textContent = "";
-logo.id = "logo";
-
 const cart = createDiv();
-cart.className = "cart flex";
+cart.className = "cart img-settings";
 
 const cartCount = createSpan();
 cartCount.className = "cartCount";
@@ -64,10 +59,10 @@ button.appendChild(span);
 const navlinks = createDiv();
 navlinks.setAttribute("id", "primary-navigation");
 navlinks.setAttribute("data-visible", "false");
-navlinks.classList.add("primary-navigation", "flex");
+navlinks.className = "primary-navigation flex";
 
 const links = [
-  //   { href: "home.ejs", text: "" },
+  { href: "home.ejs", text: "" },
   { href: "home.ejs", text: "Home" },
   { href: "home.ejs#testimonials", text: "Testimonials" },
   { href: "products.ejs", text: "Products" },
@@ -80,33 +75,17 @@ for (let i = 0; i < links.length; i++) {
   const link = createA();
   link.href = links[i].href;
   link.textContent = links[i].text;
-  link.className = `navlink ${link.textContent}`;
-  navlinks.appendChild(link);
+  if (i > 0) {
+    link.className = `navlink ${link.textContent}`;
+    navlinks.appendChild(link);
+  } else {
+    link.id = "logo";
+    link.className = "img-settings";
+    navContainer.appendChild(link);
+  }
 }
 
 navlinksAndCart.append(navlinks, cart);
-navContainer.append(logo, navlinksAndCart, button);
+navContainer.append(navlinksAndCart, button);
 nav.appendChild(navContainer);
 navigationBar.append(topNav, nav);
-
-// const homeHeroSection = createSection();
-// homeHeroSection.id = "homeHeroSection";
-// homeHeroSection.className = "homeHeroSection flex flex-col";
-
-// const heroSection = createDiv();
-// heroSection.className = "heroSection flex";
-
-// const heroCopy = createDiv();
-// heroCopy.className = "heroCopy flex flex-col";
-
-// const heroImgDiv = createDiv();
-// heroImgDiv.className = "heroImgDiv";
-
-// heroSection.append(heroCopy, heroImgDiv);
-
-// const heroNextBtn = createDiv();
-// heroNextBtn.className = "heroNextBtn";
-
-// homeHeroSection.append(navigationBar, heroSection, heroNextBtn);
-
-// document.querySelector("body").append(homeHeroSection);

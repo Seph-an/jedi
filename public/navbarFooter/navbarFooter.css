@@ -1,3 +1,7 @@
+@font-face {
+  font-family: "Varela-Round";
+  src: url("../Varela_Round/VarelaRound-Regular.ttf") format("truetype");
+}
 * {
   box-sizing: border-box;
   margin: 0;
@@ -5,12 +9,14 @@
 }
 :root {
   --font-size-base: 1rem;
+  --font-size-base-2: 1.125rem;
   --primary-color: #e6e7fb;
   --secondary-color: #1c1e5a;
   --tertiary-color: #1283fe;
   --color-one: #000;
   --color-two: #ffffff;
   --view-width: 100vw;
+  --primary-font: "Varela-Round";
 }
 
 * {
@@ -21,7 +27,10 @@
 body {
   background-color: #1c1e5a;
 }
-
+.container {
+  width: 80%;
+  margin: 0 auto;
+}
 /* .navigationBar {
   width: 100%;
 } */
@@ -36,19 +45,55 @@ body {
   background-color: #ffffff;
 }
 .navContainer {
-  padding: 1rem 0;
+  padding: 0.75rem 0;
+  justify-content: space-between;
+  align-items: center;
   /* background-color: aqua; */
 }
-.container {
-  width: 80%;
-  margin: 0 auto;
+#logo {
+  height: 74px;
+  width: 223px;
+  background-image: url(../resources/imgs/logo.svg);
+}
+.navlink {
+  font-family: var(--primary-font);
+  font-size: var(--font-size-base-2);
+  color: var(--secondary-color);
+  text-decoration: none;
+  transition: ease-in-out 0.3s;
+}
+
+.navlink:hover {
+  color: var(--tertiary-color);
+}
+
+.navlinksAndCart {
+  width: 60%;
+  justify-content: space-between;
+}
+
+.cart {
+  height: 28px;
+  width: 25.8px;
+  background-image: url(../resources/imgs/carttimg.svg);
+  font-size: 0.875rem;
+  font-family: var(--primary-font);
+  position: relative;
+  color: #fa0303;
+}
+.cartCount {
+  position: absolute;
+  top: 65%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 }
 
 .primary-navigation {
-  width: 60%;
+  width: 90%;
   justify-content: space-between;
   align-items: center;
 }
+
 .mobile-nav-toggle {
   display: none;
 }
@@ -67,4 +112,9 @@ body {
 }
 .flex-col {
   flex-direction: column;
+}
+.img-settings {
+  background-repeat: no-repeat;
+  background-size: cover;
+  cursor: pointer;
 }
