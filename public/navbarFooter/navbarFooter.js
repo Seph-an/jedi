@@ -17,12 +17,31 @@ const navigationBar = createDiv();
 navigationBar.className = "navigationBar flex flex-col";
 
 const topNav = createDiv();
-topNav.className = "topNav ";
+topNav.className = "topNav  relative";
 
 const topNavContainer = createDiv();
-topNavContainer.className = "topNavContainer container flex";
+topNavContainer.className = "topNavContainer container flex flex-centre-x";
 
-topNav.appendChild(topNavContainer);
+const deliveryLog = createDiv();
+deliveryLog.className = "deliveryLog flex flex-centre-xy";
+
+const deliveryNum = createP();
+deliveryNum.className = "deliveryNum";
+deliveryNum.textContent = `Free Delivery for Orders Above Ksh: 5,000 | Call: +254 - 713 - 309 - 025`;
+
+const logInOut = createImg();
+logInOut.className = "logInOut img-settings";
+logInOut.src = "../resources/imgs/avatar.svg";
+
+const navRings = createImg();
+navRings.className = "navRings absolute img-settings";
+navRings.src = "../resources/imgs/topnavimg.svg";
+
+deliveryLog.append(deliveryNum, logInOut);
+
+topNavContainer.append(deliveryLog);
+
+topNav.append(topNavContainer, navRings);
 
 const nav = createNav();
 nav.id = "navbar";
@@ -32,14 +51,19 @@ nav.className = "navbar";
 const navContainer = createDiv();
 navContainer.className = "navContainer container flex";
 
-const cart = createDiv();
+const cartContainer = createDiv();
+cartContainer.className = "cartContainer relative ";
+
+const cart = createImg();
 cart.className = "cart img-settings";
+cart.src = "../resources/imgs/carttimg.svg";
 
 const cartCount = createSpan();
-cartCount.className = "cartCount";
+cartCount.className = "cartCount absolute";
 cartCount.textContent = "0";
 
-cart.appendChild(cartCount);
+cartContainer.append(cart, cartCount);
+// cart.appendChild(cartCount);
 
 const navlinksAndCart = createDiv();
 navlinksAndCart.className = "navlinksAndCart flex";
@@ -79,13 +103,19 @@ for (let i = 0; i < links.length; i++) {
     link.className = `navlink ${link.textContent}`;
     navlinks.appendChild(link);
   } else {
+    const logo = createImg();
+    logo.src = "../resources/imgs/logo.svg";
+    logo.className = "logo img-settings";
     link.id = "logo";
-    link.className = "img-settings";
+    link.append(logo);
     navContainer.appendChild(link);
   }
 }
+const currentPath = window.location.pathname;
 
-navlinksAndCart.append(navlinks, cart);
+console.log("The current path is:", currentPath);
+
+navlinksAndCart.append(navlinks, cartContainer);
 navContainer.append(navlinksAndCart, button);
 nav.appendChild(navContainer);
 navigationBar.append(topNav, nav);

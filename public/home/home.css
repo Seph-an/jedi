@@ -1,24 +1,34 @@
 #homeHeroSection {
-  /* background-color: red; */
   background-color: var(--primary-color);
   height: 100vh;
   width: 100vw;
 }
-/* .heroSection {
-  height: 300px;
-  width: 70%;
-  background-color: red;
-} */
-/* .heroTitle {
-  width: 400px;
-} */
+.heroSection {
+  /* height: 300px; */
+  /* background-color: burlywood; */
+  margin: 4rem 0;
+}
+.heroCopy {
+  flex: 1.5;
+  letter-spacing: 0.125rem;
+  gap: 2rem;
+  color: var(--secondary-color);
+}
+
+.heroTitle {
+  font-size: 4rem;
+  font-family: var(--secondary-font-three);
+  line-height: 4.3rem;
+  /* letter-spacing: 0.125rem; */
+}
 .heroTitle span {
   color: var(--tertiary-color);
 }
-.heroNextBtn {
-  border-radius: 50%;
-  border: 0.1875rem var(--secondary-color) solid;
-  padding: 1rem;
-  width: 100px;
-  height: 100px;
+
+.heroImgDiv {
+  flex: 1;
+  /* background-color: aquamarine; */
+}
+.heroBlob {
+  height: 23.75rem;
 }

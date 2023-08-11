@@ -30,14 +30,23 @@ heroTitle.append(partOneText, spanPartTwo, partThreeText);
 
 const heroPrint = createP();
 heroPrint.className = "heroPrint";
-heroPrint.textContent = "With Love, for Pets, by Pet Lovers.";
+heroPrint.textContent = "With ♥️, for Pets, by Pet Lovers.";
 
 // const heroBtn = createA()
 // heroBtn.href="products.ejs"
 // heroBtn.textContent=""
 
 const heroImgDiv = createDiv();
-heroImgDiv.className = "heroImgDiv";
+heroImgDiv.className = "heroImgDiv flex flex-centre-xy relative";
+
+const heroBlob = createImg();
+heroBlob.className = "heroBlob";
+heroBlob.src = "../resources/imgs/blobimg.svg";
+
+const jediProducts = createImg();
+jediProducts.className = "jediProducts absolute";
+
+heroImgDiv.append(heroBlob);
 
 heroCopy.append(heroSub, heroTitle, heroPrint);
 heroSection.append(heroCopy, heroImgDiv);
