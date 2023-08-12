@@ -3,7 +3,7 @@ homeHeroSection.id = "homeHeroSection";
 homeHeroSection.className = "homeHeroSection flex flex-col";
 
 const heroSectionContainer = createDiv();
-heroSectionContainer.className = "container";
+heroSectionContainer.className = "container flex flex-col";
 
 const heroSection = createDiv();
 heroSection.className = "heroSection flex";
@@ -32,9 +32,23 @@ const heroPrint = createP();
 heroPrint.className = "heroPrint";
 heroPrint.textContent = "With ♥️, for Pets, by Pet Lovers.";
 
-// const heroBtn = createA()
+const heroBtn = createA();
+heroBtn.href = "#";
 // heroBtn.href="products.ejs"
-// heroBtn.textContent=""
+heroBtn.className = "heroBtn flex flex-centre-y";
+
+const btnSparkles = createImg();
+btnSparkles.className = "btnSparkles";
+btnSparkles.src = "../resources/imgs/starsimg.svg";
+
+const btnWords = createP();
+btnWords.textContent = "Get Some";
+
+const rightArrow = createImg();
+rightArrow.className = "rightArrow";
+rightArrow.src = "../resources/imgs/rightlineimg.svg";
+
+heroBtn.append(btnSparkles, btnWords, rightArrow);
 
 const heroImgDiv = createDiv();
 heroImgDiv.className = "heroImgDiv flex flex-centre-xy relative";
@@ -45,18 +59,20 @@ heroBlob.src = "../resources/imgs/blobimg.svg";
 
 const jediProducts = createImg();
 jediProducts.className = "jediProducts absolute";
+jediProducts.src = "../resources/imgs/heroImage.svg";
 
-heroImgDiv.append(heroBlob);
+heroImgDiv.append(heroBlob, jediProducts);
 
-heroCopy.append(heroSub, heroTitle, heroPrint);
+heroCopy.append(heroSub, heroTitle, heroPrint, heroBtn);
 heroSection.append(heroCopy, heroImgDiv);
 
 const heroNextBtn = createA();
-heroNextBtn.className = "heroNextBtn";
+heroNextBtn.className = "heroNextBtn flex flex-centre-xy";
 heroNextBtn.href = "#";
 
 const arrowNext = createImg();
 arrowNext.className = "arrowNext";
+arrowNext.src = "../resources/imgs/arrowDown.svg";
 
 heroNextBtn.appendChild(arrowNext);
 
