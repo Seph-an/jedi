@@ -43,4 +43,49 @@
   height: 3.5rem;
   border-radius: 50%;
 }
-/* background: linear-gradient(-60deg, red 0%, red 60%, blue 60%, blue 100%); */
+.arrowNext {
+  transition: ease-in-out 0.3s;
+  animation: blink 5s infinite;
+}
+@keyframes blink {
+  0%,
+  50% {
+    opacity: 1;
+  }
+  25%,
+  75% {
+    opacity: 0;
+  }
+}
+/* ---------------------Enter glimpse section-------------------------------- */
+
+#glimpse {
+  /* background-color: var(--color-three); */
+  background: linear-gradient(
+    -60deg,
+    var(--secondary-color) 0%,
+    var(--secondary-color) 50%,
+    var(--color-three) 50%,
+    var(--color-three) 100%
+  );
+}
+.glimpseContainer {
+  padding: 2rem 0;
+  gap: 2.5rem;
+}
+.glimpseBox {
+  width: 100%;
+  justify-content: space-between;
+  text-align: justify;
+}
+.cardHeadContainer {
+  gap: 0.625rem;
+}
+.glimpseCard {
+  width: 18.75rem;
+  gap: 1rem;
+  color: var(--primary-color);
+}
+.cardicon {
+  height: 3rem;
+}

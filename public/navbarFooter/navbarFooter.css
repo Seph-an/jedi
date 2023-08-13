@@ -32,6 +32,7 @@
   --tertiary-color-two: #ea635e;
   --color-one: #000;
   --color-two: #ffffff;
+  --color-three: #001a72;
   --view-width: 100vw;
   --primary-font: "Varela-Round";
   --secondary-font-one: "Fredoka-Regular";
@@ -48,6 +49,14 @@
 body {
   background-color: #1c1e5a;
   font-family: var(--primary-font);
+}
+.subTitles {
+  font-family: var(--secondary-font-two);
+  color: var(--color-two);
+  font-size: 2rem;
+}
+.subHead {
+  font-size: 1.25rem;
 }
 .container {
   width: 80%;
@@ -117,9 +126,8 @@ body {
   left: 50%;
   transform: translate(-53%, -58%);
 }
-.heroBtn {
+.jediBtn {
   background-color: var(--tertiary-color);
-  /* background-color: var(--secondary-color); */
   color: var(--color-two);
   padding: 1rem 2rem;
   text-decoration: none;

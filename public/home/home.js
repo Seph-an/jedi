@@ -35,7 +35,7 @@ heroPrint.textContent = "With ♥️, for Pets, by Pet Lovers.";
 const heroBtn = createA();
 heroBtn.href = "#";
 // heroBtn.href="products.ejs"
-heroBtn.className = "heroBtn flex flex-centre-y";
+heroBtn.className = "jediBtn flex flex-centre-y";
 
 const btnSparkles = createImg();
 btnSparkles.className = "btnSparkles";
@@ -79,4 +79,87 @@ heroNextBtn.appendChild(arrowNext);
 heroSectionContainer.append(heroSection, heroNextBtn);
 homeHeroSection.append(navigationBar, heroSectionContainer);
 
-document.querySelector("body").append(homeHeroSection);
+const glimpse = createSection();
+glimpse.id = "glimpse";
+
+const glimpseContainer = createDiv();
+glimpseContainer.className =
+  "container glimpseContainer flex flex-col flex-centre-y";
+
+const glipseTitle = createH2();
+glipseTitle.className = "subTitles glipseTitle";
+glipseTitle.textContent = "At a Glimpse";
+
+const glimpseItems = [
+  {
+    id: "quick",
+    icon: "quickDelivery.svg",
+    title: "Quick Delivery",
+    body: `Our competent team of qualified personnel and partners
+     work together to guarantee that your order from Jedi Pet Foods
+      Limited gets delivered rapidly and at your convenience.`,
+  },
+  {
+    id: "sus",
+    icon: "Sustainability.svg",
+    title: "Sustainability",
+    body: `In addition to minimising waste by making the most of our
+     raw materials. We contribute to the global goal of fighting 
+     climate change by enforcing stringent energy efficiency and
+      energy conservation measures.`,
+  },
+  {
+    id: "trace",
+    icon: "Traceability.svg",
+    title: "Traceability",
+    body: `We account for the origin of every unit raw material
+     that goes into manufacturing our product on top of all other
+      aspects of the supply chain. This ensures the highest 
+      standards of quality assurance & control.`,
+  },
+];
+
+const glimpseBox = createDiv();
+glimpseBox.className = "glimpseBox flex";
+
+glimpseItems.forEach((glimpseItem) => {
+  const glimpseCard = createDiv();
+  glimpseCard.className = `glimpseCard ${glimpseItem.id} flex flex-col`;
+
+  const cardHeadContainer = createDiv();
+  cardHeadContainer.className = "cardHeadContainer flex flex-col flex-centre-y";
+
+  const cardicon = createImg();
+  cardicon.className = "cardicon ";
+  cardicon.src = `../resources/imgs/${glimpseItem.icon}`;
+
+  const cardTitle = createH2();
+  cardTitle.className = "subTitles subHead";
+  cardTitle.textContent = glimpseItem.title;
+
+  const cardBody = createP();
+  cardBody.className = "itemBody";
+  cardBody.textContent = glimpseItem.body;
+
+  cardHeadContainer.append(cardicon, cardTitle);
+  glimpseCard.append(cardHeadContainer, cardBody);
+  glimpseBox.append(glimpseCard);
+});
+
+const glimpseBtn = createA();
+glimpseBtn.className = "jediBtn glimpseBtn flex flex-centre-y";
+glimpseBtn.href = "#";
+
+const glimpseBtnWrds = createP();
+glimpseBtnWrds.textContent = "More About Us";
+
+const rightArrow2 = createImg();
+rightArrow2.className = "rightArrow";
+rightArrow2.src = "../resources/imgs/rightlineimg.svg";
+
+glimpseBtn.append(glimpseBtnWrds, rightArrow2);
+
+glimpse.appendChild(glimpseContainer);
+glimpseContainer.append(glipseTitle, glimpseBox, glimpseBtn);
+
+document.querySelector("body").append(homeHeroSection, glimpse);
