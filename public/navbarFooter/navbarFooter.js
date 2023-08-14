@@ -11,7 +11,62 @@ const createA = () => document.createElement("a");
 const createNav = () => document.createElement("nav");
 const createSpan = () => document.createElement("span");
 const createImg = () => document.createElement("img");
+const createUl = () => document.createElement("ul");
+const createLi = () => document.createElement("li");
 
+//if twoicons is true, it means the btn has two icons
+//use case
+// const buttonWithImageFirst = createButtonWithOptions(
+//   false //true if you want to have icon text icon
+//   'myButton imageFirst', //button classes
+//   '#', //href
+//   'Click Me', //words on button
+//   'image-url.jpg', //icon or image one
+//   'image-url2.jpg', //icon or image two
+//   true // true if you want image to come first
+// );
+function createButton(
+  twoicons = true,
+  classes,
+  href,
+  content,
+  imgSrc1,
+  imgSrc2,
+  imageFirst = true,
+  noicon = true
+) {
+  const button = createA();
+  button.className = `${classes} jediBtn flex flex-y`;
+  button.href = href;
+
+  const text = createSpan();
+  text.className = "buttonText";
+  text.textContent = content;
+
+  const img2 = createImg();
+  img2.className = "buttonIcon buttonIcon2";
+  img2.src = imgSrc2;
+
+  if (twoicons) {
+    const img1 = createImg();
+    img1.className = "buttonIcon buttonIcon1 ";
+    img1.src = imgSrc1;
+
+    button.append(img1, text, img2);
+  } else {
+    if (noicon) {
+      button.append(text);
+    } else {
+      if (imageFirst) {
+        button.append(img2, text);
+      } else {
+        button.append(text, img2);
+      }
+    }
+  }
+
+  return button;
+}
 //navigation bar
 const navigationBar = createDiv();
 navigationBar.className = "navigationBar flex flex-col";

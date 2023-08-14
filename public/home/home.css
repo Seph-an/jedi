@@ -61,16 +61,26 @@
 
 #glimpse {
   /* background-color: var(--color-three); */
+  /* background-color: var(--color-four); */
+
   background: linear-gradient(
     -60deg,
     var(--secondary-color) 0%,
-    var(--secondary-color) 50%,
-    var(--color-three) 50%,
+    var(--secondary-color) 60%,
+    var(--color-three) 60%,
     var(--color-three) 100%
   );
+
+  /* background: linear-gradient(
+    -60deg,
+    var(--color-three) 0%,
+    var(--color-three) 20%,
+    var(--secondary-color) 20%,
+    var(--secondary-color) 100%
+  ); */
 }
 .glimpseContainer {
-  padding: 2rem 0;
+  padding: 3rem 0;
   gap: 2.5rem;
 }
 .glimpseBox {
@@ -88,4 +98,167 @@
 }
 .cardicon {
   height: 3rem;
+}
+/* ---------- Enter Testimonials Section --------------- */
+#testimonials {
+  color: var(--secondary-color);
+  background-color: var(--color-two);
+  /* background: linear-gradient(
+    20deg,
+    var(--color-two) 0%,
+    var(--color-two) 80%,
+    var(--primary-color) 80%,
+    var(--primary-color) 100%
+  ); */
+  /* background-color: aquamarine; */
+  /* background: linear-gradient(
+    20deg,
+    aquamarine 0%,
+    aquamarine 80%,
+    var(--color-two) 80%,
+    var(--color-two) 100%
+  ); */
+}
+.testimonialsContainer {
+  padding: 3rem 0;
+  gap: 1rem;
+  z-index: -10;
+}
+.testimonialsHeader {
+  color: var(--secondary-color);
+  position: relative;
+  padding: 0.3125rem 1rem;
+  z-index: 5;
+}
+.testimonialsHeader::before {
+  content: "";
+  background-color: var(--primary-color);
+  /* background-color: var(--tertiary-color); */
+  position: absolute;
+  z-index: -1;
+  width: 210px;
+  height: 100%;
+  transform: skew(15deg);
+  transform-origin: top left;
+  top: 0;
+  left: 0;
+}
+.testimonialsSub {
+  max-width: 48.75rem;
+  font-size: 1.5rem;
+}
+.testimonialsSub span {
+  color: var(--tertiary-color);
+}
+.testimonialsBox {
+  width: 100%;
+  /* background-color: #7fffd4; */
+  /* padding: 2rem; */
+  margin: 2rem 0;
+  justify-content: space-between;
+}
+.testimonyCard {
+  border: 0.1875rem var(--color-five) solid;
+  width: 15.625rem;
+  height: 18.75rem;
+  border-radius: 1.25rem;
+  box-shadow: 0px 2px 4px 0px rgba(0, 0, 0, 0.25);
+}
+.dot {
+  background-color: var(--color-five);
+  /* background-color: var(--tertiary-color); */
+  padding: 0.5rem;
+  border-radius: 50%;
+  top: 1rem;
+  left: 1rem;
+}
+
+.testimonyBlock {
+  font-size: 1.25rem;
+  top: 45%;
+  left: 50%;
+  transform: translate(-50%, -45%);
+  width: 90%;
+}
+
+.testimonyAuthorContainer {
+  bottom: 0;
+  /* background-color: antiquewhite; */
+  width: 100%;
+  align-items: flex-end;
+  padding: 0 1rem 1rem 0;
+  gap: 0.1875rem;
+}
+.testimonyAuthorContainer p {
+  text-align: right;
+  font-size: 0.875rem;
+}
+.testimonialsUnder {
+  font-size: 1.125rem;
+}
+.testimonialsBtn img,
+.glimpseBtn img {
+  width: 1.5rem;
+}
+/* ------------- Testimonial Marqueee ----------------------- */
+.marquee {
+  width: var(--marquee-width);
+  padding: 0.625rem 0;
+  margin: 1.5rem 0;
+  overflow: hidden;
+  position: relative;
+}
+.marquee::before,
+.marquee::after {
+  position: absolute;
+  width: 5rem;
+  top: 0;
+  height: 100%;
+  z-index: 1;
+  content: "";
+}
+.marquee::before {
+  left: 0;
+  background: linear-gradient(to right, var(--color-two) 0%, transparent 100%);
+}
+.marquee::after {
+  right: 0;
+  background: linear-gradient(to left, var(--color-two) 0%, transparent 100%);
+}
+.marquee-content {
+  list-style: none;
+  height: 100%;
+  animation: scrolling var(--marquee-animation-duration) linear infinite;
+}
+.marquee-content:hover {
+  animation-play-state: paused;
+}
+@keyframes scrolling {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(
+      calc(-1 * var(--marquee-element-width) * var(--marquee-elements))
+    );
+  }
+}
+.marquee-content li {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: var(--marquee-element-width);
+  flex-shrink: 0;
+}
+
+/* -------------------- Enter Featured Blog Section ----------------------- */
+#blogFeatureSection {
+  /* background-color: aquamarine; */
+  background-color: var(--color-six);
+}
+.blogFeatureContainer {
+  padding: 2rem 0;
+}
+.blogFeatureHeader {
+  color: var(--secondary-color);
 }

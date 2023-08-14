@@ -79,6 +79,7 @@ heroNextBtn.appendChild(arrowNext);
 heroSectionContainer.append(heroSection, heroNextBtn);
 homeHeroSection.append(navigationBar, heroSectionContainer);
 
+// -------------Glimpse Section ------------------------------
 const glimpse = createSection();
 glimpse.id = "glimpse";
 
@@ -146,20 +147,204 @@ glimpseItems.forEach((glimpseItem) => {
   glimpseBox.append(glimpseCard);
 });
 
-const glimpseBtn = createA();
-glimpseBtn.className = "jediBtn glimpseBtn flex flex-centre-y";
-glimpseBtn.href = "#";
+// const glimpseBtn = createA();
+// glimpseBtn.className = "jediBtn glimpseBtn flex flex-centre-y";
+// glimpseBtn.href = "#";
+// glimpseBtn.textContent = "More About Us";
 
-const glimpseBtnWrds = createP();
-glimpseBtnWrds.textContent = "More About Us";
+// const rightArrow2 = createImg();
+// rightArrow2.className = "rightArrow";
+// rightArrow2.src = "../resources/imgs/rightlineimg.svg";
 
-const rightArrow2 = createImg();
-rightArrow2.className = "rightArrow";
-rightArrow2.src = "../resources/imgs/rightlineimg.svg";
+// glimpseBtn.append(rightArrow2);
 
-glimpseBtn.append(glimpseBtnWrds, rightArrow2);
+const glimpseBtn = createButton(
+  false,
+  "glimpseBtn",
+  "#",
+  "More About Us",
+  "",
+  "../resources/imgs/rightlineimg.svg",
+  false,
+  false
+);
 
 glimpse.appendChild(glimpseContainer);
 glimpseContainer.append(glipseTitle, glimpseBox, glimpseBtn);
 
-document.querySelector("body").append(homeHeroSection, glimpse);
+// ---------- Testimonial Section ---------------------------
+
+const testimonials = createSection();
+testimonials.id = "testimonials";
+
+const testimonialsContainer = createDiv();
+testimonialsContainer.className =
+  " testimonialsContainer container flex flex-col flex-centre-y";
+
+const testimonialsHeader = createH2();
+testimonialsHeader.className = "testimonialsHeader subTitles";
+testimonialsHeader.textContent = "Testimonials";
+
+const testimonialsSub = createP();
+testimonialsSub.className = "testimonialsSub";
+
+const testimonialSub1 = document.createTextNode(
+  `Delighted customers share their experiences with `
+);
+const testimonialSub2 = document.createTextNode(`Jedi Pet food.`);
+const testimonialSubSpan = document.createElement("span");
+
+testimonialSubSpan.appendChild(testimonialSub2);
+
+testimonialsSub.append(testimonialSub1, testimonialSubSpan);
+
+// const testimonialsBox = createDiv();
+// testimonialsBox.className = "testimonialsBox flex flex-centre-y";
+
+const marquee = createDiv(); //testimonialsBox
+marquee.classList.add("marquee");
+
+const marqueeContent = createUl();
+marqueeContent.classList.add("marquee-content", "flex");
+
+const testimonies = [
+  {
+    words: `“Donec diam et fermentum purus fusce adipiscing risus 
+    pretium ut. Quam elit quis donec id et. Luctus amet integer convallis.” `,
+    client: "_Sitna",
+    profession: "Electrical Engineer - Gisal Harlem",
+  },
+  {
+    words: `“Quam elit quis donec id et. Donec diam et fermentum
+     purus fusce adipiscing risus pretium ut. Luctus amet integer convallis.” `,
+    client: "_Brenda",
+    profession: "Founder - Strayville Pet Rescue",
+  },
+  {
+    words: `“Luctus amet integer convallis. Quam elit quis donec id et. 
+    Donec diam et fermentum purus fusce adipiscing risus pretium ut.” `,
+    client: "_Caline",
+    profession: "Animal Activist & Pet Lover",
+  },
+  {
+    words: `“Luctus amet integer convallis. Quam elit quis donec id et. 
+    Donec diam et fermentum purus fusce adipiscing risus pretium ut.” `,
+    client: "_`lenine",
+    profession: "Animal Activist & Pet Lover",
+  },
+  {
+    words: `“Luctus amet integer convallis. Quam elit quis donec id et. 
+    Donec diam et fermentum purus fusce adipiscing risus pretium ut.” `,
+    client: "_Bruce",
+    profession: "Animal Activist & Pet Lover",
+  },
+  {
+    words: `“Luctus amet integer convallis. Quam elit quis donec id et. 
+    Donec diam et fermentum purus fusce adipiscing risus pretium ut.” `,
+    client: "_Eisha",
+    profession: "Animal Activist & Pet Lover",
+  },
+  {
+    words: `“Luctus amet integer convallis. Quam elit quis donec id et. 
+    Donec diam et fermentum purus fusce adipiscing risus pretium ut.” `,
+    client: "_Zigi",
+    profession: "Animal Activist & Pet Lover",
+  },
+  {
+    words: `“Luctus amet integer convallis. Quam elit quis donec id et. 
+    Donec diam et fermentum purus fusce adipiscing risus pretium ut.” `,
+    client: "_Lorna",
+    profession: "Animal Activist & Pet Lover",
+  },
+  //   { words: "", client: "_Max", profession: "" },
+  //   { words: "", client: "_Lindsay", profession: "" },
+  //   { words: "", client: "_Peter", profession: "" },
+];
+testimonies.forEach((testimony) => {
+  const li = createLi();
+  const testimonyCard = createDiv();
+  testimonyCard.className = "testimonyCard relative";
+
+  const dot = createDiv();
+  dot.className = "dot absolute";
+
+  const testimonyBlock = createP();
+  testimonyBlock.className = "testimonyBlock absolute";
+  testimonyBlock.textContent = testimony.words;
+
+  const testimonyAuthorContainer = createDiv();
+  testimonyAuthorContainer.className =
+    "testimonyAuthorContainer flex flex-col absolute";
+
+  const testimonyAuthor = createH2();
+  testimonyAuthor.textContent = testimony.client;
+  testimonyAuthor.className = "testimonyAuthor";
+
+  const authorProfession = createP();
+  authorProfession.textContent = testimony.profession;
+  authorProfession.className = "authorProfession";
+
+  testimonyAuthorContainer.append(testimonyAuthor, authorProfession);
+  testimonyCard.append(dot, testimonyBlock, testimonyAuthorContainer);
+  li.appendChild(testimonyCard);
+  marqueeContent.appendChild(li);
+});
+
+marquee.appendChild(marqueeContent);
+
+const testimonialsUnder = createP();
+testimonialsUnder.className = "testimonialsUnder";
+testimonialsUnder.textContent = "You can share in the delight too!";
+
+const testimonialsBtn = createButton(
+  false,
+  "testimonialsBtn",
+  "#",
+  "Shop Now",
+  "",
+  "../resources/imgs/rightlineimg.svg",
+  false,
+  false
+);
+
+testimonials.append(testimonialsContainer);
+testimonialsContainer.append(
+  testimonialsHeader,
+  testimonialsSub,
+  marquee,
+  //   testimonialsBox,
+  testimonialsUnder,
+  testimonialsBtn
+);
+
+// --------------- Featured Blog Section -------------------------------
+const blogFeatureSection = createSection();
+blogFeatureSection.id = "blogFeatureSection";
+
+const blogFeatureContainer = createDiv();
+blogFeatureContainer.className =
+  "blogFeatureContainer container flex flex-col flex-centre-y";
+
+const blogFeatureHeader = createH2();
+blogFeatureHeader.className = "blogFeatureHeader subTitles ";
+blogFeatureHeader.textContent = "Featured Blogs";
+
+blogFeatureContainer.append(blogFeatureHeader);
+blogFeatureSection.append(blogFeatureContainer);
+// ------------------ End Blog Featured Section --------------------------
+document
+  .querySelector("body")
+  .append(homeHeroSection, glimpse, testimonials, blogFeatureSection);
+
+const root = document.documentElement;
+//below code enables us know displayed elements, so as to know the right num to duplicate
+const marqueeElementsDisplayed = getComputedStyle(root).getPropertyValue(
+  "--marquee-elements-displayed"
+);
+const marqueeContents = document.querySelector(".marquee-content");
+
+root.style.setProperty("--marquee-elements", marqueeContents.children.length);
+
+for (let i = 0; i < marqueeElementsDisplayed; i++) {
+  marqueeContents.appendChild(marqueeContents.children[i].cloneNode(true));
+}

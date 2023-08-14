@@ -33,18 +33,30 @@
   --color-one: #000;
   --color-two: #ffffff;
   --color-three: #001a72;
+  --color-four: #7fffd4;
+  --color-five: #3c41e1;
+  --color-six: #bbbdfb;
   --view-width: 100vw;
   --primary-font: "Varela-Round";
   --secondary-font-one: "Fredoka-Regular";
   --secondary-font-two: "Fredoka-Medium";
   --secondary-font-three: "Fredoka-SemiBold";
   --secondary-font-four: "Fredoka-Bold";
+  /* ----------Team Marquee -------------- */
+  --marquee-width: 80vw;
+  --marquee-height: 20vh;
+  --marquee-elements-displayed: 4;
+  --marquee-element-width: calc(
+    var(--marquee-width) / var(--marquee-elements-displayed)
+  );
+  --marquee-animation-duration: calc(var(--marquee-elements) * 5s);
 }
 
 * {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
+  scroll-behavior: smooth;
 }
 body {
   background-color: #1c1e5a;
@@ -139,8 +151,8 @@ body {
   box-shadow: 0px 2px 4px 0px rgba(0, 0, 0, 0.25);
   transition: ease-in-out 0.3s;
 }
-.heroBtn:hover {
-  opacity: 0.88;
+.jediBtn:hover {
+  opacity: 0.83;
   transform: scaleX(1.01);
 }
 .btnSparkles {
