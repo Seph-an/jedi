@@ -174,3 +174,51 @@ navlinksAndCart.append(navlinks, cartContainer);
 navContainer.append(navlinksAndCart, button);
 nav.appendChild(navContainer);
 navigationBar.append(topNav, nav);
+
+// --------------- Enter Footer Section --------------------------------
+
+function createDivWithClasses(classNames) {
+  const div = createDiv();
+  div.className = classNames;
+  return div;
+}
+function createH2WithClasses(classNames) {
+  const h2 = createH2();
+  h2.className = classNames;
+  return h2;
+}
+function createPWithClasses(classNames) {
+  const P = createP();
+  P.className = classNames;
+  return P;
+}
+
+const footerSection = createSection();
+footerSection.id = "footerSection";
+
+const footerContainer = createDivWithClasses(
+  "footerContainer container flex flex-col"
+);
+
+const subscribeContainer = createDivWithClasses("subscribeContainer");
+
+const subscribeHeader = createH2WithClasses("subscribeHeader");
+
+const subscribeSub = createPWithClasses("subscribeSub");
+
+const footerLinks = createDivWithClasses("footerLinks");
+
+footerContainer.append(subscribeContainer, footerLinks);
+
+const footer = createDivWithClasses("footer flex flex-centre-xy");
+
+footerSection.append(footerContainer, footer);
+
+const currentYear = new Date().getFullYear();
+
+const footerWords = `©️ ${currentYear} Jedi Pet Foods Limited. AllRights Reserved.`;
+footerWords.className = "footerWords";
+
+footer.appendChild(footerWords);
+//cart funtionality
+//logged in and out functionality

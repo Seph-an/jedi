@@ -24,7 +24,9 @@
 .heroTitle span {
   color: var(--tertiary-color);
 }
-
+.btnSparkles {
+  width: 2rem;
+}
 .heroImgDiv {
   flex: 1;
   /* background-color: aquamarine; */
@@ -124,28 +126,30 @@
   gap: 1rem;
   z-index: -10;
 }
-.testimonialsHeader {
+.testimonialsHeader,
+.blogFeatureHeader {
   color: var(--secondary-color);
   position: relative;
-  padding: 0.3125rem 1rem;
+  padding: 0.3125rem 0 0.3125rem 0.5875rem;
   z-index: 5;
 }
-.testimonialsHeader::before {
+.testimonialsHeader::before,
+.blogFeatureHeader::before {
   content: "";
   background-color: var(--primary-color);
-  /* background-color: var(--tertiary-color); */
   position: absolute;
   z-index: -1;
-  width: 210px;
+  width: 100%;
   height: 100%;
   transform: skew(15deg);
   transform-origin: top left;
   top: 0;
   left: 0;
 }
-.testimonialsSub {
+.testimonialsSub,
+.blogSub {
   max-width: 48.75rem;
-  font-size: 1.5rem;
+  font-size: 1.3125rem;
 }
 .testimonialsSub span {
   color: var(--tertiary-color);
@@ -197,7 +201,8 @@
   font-size: 1.125rem;
 }
 .testimonialsBtn img,
-.glimpseBtn img {
+.glimpseBtn img,
+.blogFeatureBtn img {
   width: 1.5rem;
 }
 /* ------------- Testimonial Marqueee ----------------------- */
@@ -257,8 +262,52 @@
   background-color: var(--color-six);
 }
 .blogFeatureContainer {
-  padding: 2rem 0;
+  padding: 3rem 0;
+  gap: 2rem;
+  z-index: -10;
 }
 .blogFeatureHeader {
+  padding-left: 1rem;
+}
+.blogFeatureHeader::before {
+  background-color: var(--color-two);
+}
+.blogSub {
+  text-align: center;
   color: var(--secondary-color);
+}
+.blogFeatureBox {
+  width: 100%;
+  justify-content: space-between;
+  /* background-color: bisque; */
+}
+.blogFeatureCard {
+  width: 18.75rem;
+  background-color: var(--color-two);
+  border-radius: 0.625rem;
+  box-shadow: 0px 1px 6px 0px rgba(0, 0, 0, 0.25);
+}
+.blogFeatureImg {
+  width: 100%;
+  border-top-left-radius: 0.625rem;
+  border-top-right-radius: 0.625rem;
+}
+.blogCardContainer {
+  padding: 1rem;
+  gap: 0.625rem;
+  color: var(--secondary-color);
+}
+.blogCardContainer h3 {
+  font-family: var(--secondary-font-two);
+  font-size: 1.25rem;
+}
+.blogCardContainer a {
+  text-decoration: none;
+  font-size: 1.125rem;
+  color: var(--color-five);
+  font-weight: 600;
+  transition: ease-in-out 0.3s;
+}
+.blogCardContainer a:hover {
+  opacity: 0.8;
 }

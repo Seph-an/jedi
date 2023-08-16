@@ -329,7 +329,87 @@ const blogFeatureHeader = createH2();
 blogFeatureHeader.className = "blogFeatureHeader subTitles ";
 blogFeatureHeader.textContent = "Featured Blogs";
 
-blogFeatureContainer.append(blogFeatureHeader);
+const blogSub = createP();
+blogSub.className = "blogSub";
+blogSub.textContent =
+  "Traverse authentic, educative, interesting and informative insights from our blog.";
+
+const blogFeatureBox = createDiv();
+blogFeatureBox.className = "blogFeatureBox flex ";
+
+const blogs = [
+  {
+    blogPic: "catontreewiththoughts.svg",
+    blogTitle: "Understand Why Cats Love Nature.",
+    blogPost: `Quam elit quis donec id et. Donec diam et fermentum
+     purus fusce adipiscing risus pretium ut. Luctus amet integer convallis`,
+  },
+  {
+    blogPic: "Jedipetfood.svg",
+    blogTitle: "The Best Dry Food Diet For Your Cute Cats.",
+    blogPost: `Rrem ipsum dolor sit amet consectetur. Quam elit quis donec id et.
+     Donec diam et fermentum purus fusce adipiscing`,
+  },
+  {
+    blogPic: "catinlovinghome.svg",
+    blogTitle: "How To Make Your Feline Friend Feel at Home.",
+    blogPost: `Donec diam et fermentum purus fusce adipiscing risus pretium ut.
+     Luctus amet integer convallis sit metus convallis molestie posuere`,
+  },
+];
+
+blogs.forEach((blog) => {
+  const blogFeatureCard = createDiv();
+  blogFeatureCard.className = "blogFeatureCard";
+
+  const blogFeatureImg = createImg();
+  blogFeatureImg.className = "blogFeatureImg";
+  blogFeatureImg.src = `../resources/imgs/${blog.blogPic}`;
+
+  const blogCardContainer = createDiv();
+  blogCardContainer.className = "blogCardContainer flex flex-col ";
+
+  const blogTitle = createH2();
+  blogTitle.className = "blogTitle";
+  blogTitle.textContent = blog.blogTitle;
+
+  const maxLength = 100;
+
+  const blogFeature = createP();
+  blogFeature.className = "blogFeature";
+
+  if (blog.blogPost.length > maxLength) {
+    const truncatePost = blog.blogPost.substring(0, maxLength) + "...";
+    blogFeature.textContent = truncatePost;
+  }
+
+  const blogFeatureRead = createA();
+  blogFeatureRead.className = "blogFeatureRead";
+  blogFeatureRead.href = "#";
+  blogFeatureRead.textContent = "Read More >";
+
+  blogCardContainer.append(blogTitle, blogFeature, blogFeatureRead);
+  blogFeatureCard.append(blogFeatureImg, blogCardContainer);
+  blogFeatureBox.appendChild(blogFeatureCard);
+});
+
+const blogFeatureBtn = createButton(
+  false,
+  "blogFeatureBtn",
+  "#",
+  "Explore Blog",
+  "",
+  "../resources/imgs/rightlineimg.svg",
+  false,
+  false
+);
+
+blogFeatureContainer.append(
+  blogFeatureHeader,
+  blogSub,
+  blogFeatureBox,
+  blogFeatureBtn
+);
 blogFeatureSection.append(blogFeatureContainer);
 // ------------------ End Blog Featured Section --------------------------
 document

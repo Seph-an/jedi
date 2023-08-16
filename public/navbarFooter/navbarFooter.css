@@ -73,6 +73,9 @@ body {
 .container {
   width: 80%;
   margin: 0 auto;
+  /* padding: 2rem 0;
+  gap: 2rem;
+  z-index: -10; */
 }
 .topNav {
   padding: 0.75rem;
@@ -155,9 +158,6 @@ body {
   opacity: 0.83;
   transform: scaleX(1.01);
 }
-.btnSparkles {
-  width: 2rem;
-}
 
 .rightArrow {
   width: 1.7rem;
@@ -209,3 +209,16 @@ body {
   background-size: cover;
   cursor: pointer;
 }
+
+/* ------------------------- Footer Styling ----------------------------- */
+#footerSection {
+  background-color: var(--color-two);
+}
+.footerContainer {
+  padding: 1rem 0;
+}
+.footer {
+  background-color: var(--color-six);
+  width: 100%;
+}
+/* ------------------------- End Footer Styling ----------------------------- */
