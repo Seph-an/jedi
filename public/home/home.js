@@ -414,7 +414,13 @@ blogFeatureSection.append(blogFeatureContainer);
 // ------------------ End Blog Featured Section --------------------------
 document
   .querySelector("body")
-  .append(homeHeroSection, glimpse, testimonials, blogFeatureSection);
+  .append(
+    homeHeroSection,
+    glimpse,
+    testimonials,
+    blogFeatureSection,
+    footerSection
+  );
 
 const root = document.documentElement;
 //below code enables us know displayed elements, so as to know the right num to duplicate

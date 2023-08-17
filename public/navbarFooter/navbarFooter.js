@@ -176,49 +176,177 @@ nav.appendChild(navContainer);
 navigationBar.append(topNav, nav);
 
 // --------------- Enter Footer Section --------------------------------
+function createSectionWithClasses(id) {
+  const section = createSection();
+  section.id = id;
+  return section;
+}
 
 function createDivWithClasses(classNames) {
   const div = createDiv();
   div.className = classNames;
   return div;
 }
-function createH2WithClasses(classNames) {
+function createH2WithClasses(classNames, content) {
   const h2 = createH2();
   h2.className = classNames;
+  h2.textContent = content;
   return h2;
 }
-function createPWithClasses(classNames) {
+function createPWithClasses(classNames, content) {
   const P = createP();
   P.className = classNames;
+  P.textContent = content;
   return P;
 }
+function createForm(classNames) {
+  const form = document.createElement("form");
+  form.className = classNames;
+  return form;
+}
+function createImage(classNames, src, tag) {
+  const img = document.createElement("img");
+  img.className = classNames;
+  img.src = src;
+  img.tag = tag;
+  return img;
+}
+function createInputField(classNames, type, placeholder, value) {
+  const inputElement = document.createElement("input");
+  inputElement.type = type;
+  inputElement.className = classNames;
+  inputElement.placeholder = placeholder;
+  inputElement.required = true;
+  inputElement.value = value;
+  return inputElement;
+}
 
-const footerSection = createSection();
-footerSection.id = "footerSection";
+function createList(ulClassName, items, useAnchors = false) {
+  const ulElement = document.createElement("ul");
+  ulElement.className = ulClassName;
+
+  items.forEach((item) => {
+    const liElement = useAnchors
+      ? createListItemWithAnchor(item.content, item.href)
+      : createListItem(item);
+    ulElement.appendChild(liElement);
+  });
+
+  return ulElement;
+}
+
+function createListItem(content) {
+  const liElement = document.createElement("li");
+  liElement.textContent = content;
+  return liElement;
+}
+
+function createListItemWithAnchor(content, href) {
+  const anchorElement = document.createElement("a");
+  anchorElement.textContent = content;
+  anchorElement.href = href; // Set the appropriate href value here
+  const liElement = document.createElement("li");
+  liElement.appendChild(anchorElement);
+  return liElement;
+}
+const footerSection = createSectionWithClasses("footerSection");
 
 const footerContainer = createDivWithClasses(
   "footerContainer container flex flex-col"
 );
 
-const subscribeContainer = createDivWithClasses("subscribeContainer");
+const subscribeContainer = createDivWithClasses(
+  "subscribeContainer flex flex-col flex-centre-y"
+);
 
-const subscribeHeader = createH2WithClasses("subscribeHeader");
+const subscribeHeader = createH2WithClasses(
+  "subscribeHeader",
+  "Stay In The Loop!"
+);
 
-const subscribeSub = createPWithClasses("subscribeSub");
+const subscribeSub = createPWithClasses(
+  "subscribeSub",
+  `Receive offers, deals, experts and pet lovers 
+  insights, experiences and ideas straight to your inbox.`
+);
 
-const footerLinks = createDivWithClasses("footerLinks");
+const form = createForm("form flex ");
 
-footerContainer.append(subscribeContainer, footerLinks);
+const input = createInputField(
+  "input subscribeInput",
+  "mail",
+  "Enter your mail...",
+  ""
+);
+
+const subscribe = createInputField(
+  "input subscribeBtn",
+  "submit",
+  "",
+  "Subscribe"
+);
+
+const footerLinks = createDivWithClasses("footerLinks flex ");
+
+const address = createDivWithClasses("address footerDivs flex flex-col");
+
+const addressTitle = createH2WithClasses(
+  "addressTitle footerlinkTitle",
+  "Contact"
+);
+
+const addressContent = createList(
+  "addressContent footerlinkContent flex flex-col",
+  [
+    "Rangwe 10, Off Rangwe Road,",
+    "Industrial Area, Nairobi - Kenya.",
+    "inquiry@jedipetfoods.com",
+    "+254 - 713 - 309 - 025",
+  ]
+);
+
+address.append(addressTitle, addressContent);
+
+const company = createDivWithClasses("company footerDivs flex flex-col");
+
+const companyTitle = createH2WithClasses(
+  "companyTitle footerlinkTitle",
+  "Company"
+);
+
+const companyContent = createList(
+  "companyContent footerlinkContent flex flex-col",
+  [
+    { content: "Careers", href: "#" },
+    { content: "Who We Are", href: "#" },
+    { content: "Shop", href: "#" },
+    { content: "Privacy Policy", href: "#" },
+    { content: "Terms of Service", href: "#" },
+  ],
+  true
+);
+
+company.append(companyTitle, companyContent);
+
+const happykitty = createImage(
+  "happykitty",
+  "../resources/imgs/happykitty.svg",
+  "A happy full kitten"
+);
+
+footerLinks.append(address, company, happykitty);
 
 const footer = createDivWithClasses("footer flex flex-centre-xy");
 
-footerSection.append(footerContainer, footer);
-
 const currentYear = new Date().getFullYear();
 
-const footerWords = `©️ ${currentYear} Jedi Pet Foods Limited. AllRights Reserved.`;
-footerWords.className = "footerWords";
+const footerWords = `©️ ${currentYear} - Jedi Pet Foods Limited. All Rights Reserved.`;
 
-footer.appendChild(footerWords);
+form.append(input, subscribe);
+subscribeContainer.append(subscribeHeader, subscribeSub, form);
+footerContainer.append(subscribeContainer, footerLinks);
+footer.append(footerWords);
+footerSection.append(footerContainer, footer);
+
 //cart funtionality
 //logged in and out functionality

@@ -215,10 +215,84 @@ body {
   background-color: var(--color-two);
 }
 .footerContainer {
-  padding: 1rem 0;
+  padding: 3rem 0 0 0;
+  color: var(--secondary-color);
+  gap: 1.5rem;
+}
+.subscribeContainer {
+  width: 100%;
+  padding: 1rem;
+  border: 0.1875rem var(--color-five) solid;
+  border-radius: 1rem;
+  gap: 0.3125rem;
+}
+.subscribeHeader {
+  font-size: 1.5rem;
+  font-weight: 800;
+}
+.form {
+  gap: 0.3rem;
+  margin: 0.625rem 0;
+}
+.input {
+  font-size: 1rem;
+  padding: 0.875rem;
+  outline: none;
+  text-align: center;
+  cursor: pointer;
+}
+.subscribeInput {
+  border: 0.125rem var(--color-five) solid;
+  border-top-left-radius: 0.3125rem;
+  border-bottom-left-radius: 0.3125rem;
+}
+.subscribeBtn {
+  background-color: var(--color-five);
+  color: var(--color-two);
+  border: none;
+  font-size: 1.25rem;
+  border-top-right-radius: 0.3125rem;
+  border-bottom-right-radius: 0.3125rem;
+  transition: ease-in-out 0.3s;
+  box-shadow: 0px 2px 4px 0px rgba(0, 0, 0, 0.25);
+}
+.subscribeBtn:hover {
+  opacity: 0.9;
+}
+.footerLinks {
+  justify-content: space-between;
+}
+.footerDivs {
+  gap: 0.625rem;
+}
+.footerlinkContent {
+  gap: 0.3125rem;
+}
+.companyContent a {
+  text-decoration: none;
+  color: var(--color-five);
+}
+.footerlinkTitle {
+  color: var(--secondary-color);
+}
+.happykitty {
+  height: 15.625rem;
+  margin-top: -3.125rem;
+  margin-right: -2.5rem;
+}
+
+.address {
+  max-width: 19.5rem;
+}
+.address ul,
+.company ul {
+  list-style: none;
 }
 .footer {
   background-color: var(--color-six);
   width: 100%;
+  padding: 1rem;
+  color: var(--secondary-color);
+  font-size: 0.875rem;
 }
 /* ------------------------- End Footer Styling ----------------------------- */
