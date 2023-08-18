@@ -36,6 +36,7 @@
   --color-four: #7fffd4;
   --color-five: #3c41e1;
   --color-six: #bbbdfb;
+  --color-seven: #a1cbff;
   --view-width: 100vw;
   --primary-font: "Varela-Round";
   --secondary-font-one: "Fredoka-Regular";
@@ -59,12 +60,12 @@
   scroll-behavior: smooth;
 }
 body {
-  background-color: #1c1e5a;
+  background-color: var(--secondary-color);
   font-family: var(--primary-font);
 }
 .subTitles {
   font-family: var(--secondary-font-two);
-  color: var(--color-two);
+  color: var(--secondary-color);
   font-size: 2rem;
 }
 .subHead {
@@ -271,7 +272,13 @@ body {
 .companyContent a {
   text-decoration: none;
   color: var(--color-five);
+  transition: ease-in-out 0.3s;
 }
+.companyContent a:hover,
+.companyContent a:focus {
+  color: var(--tertiary-color);
+}
+
 .footerlinkTitle {
   color: var(--secondary-color);
 }

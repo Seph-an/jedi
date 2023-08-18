@@ -82,6 +82,13 @@ homeHeroSection.append(navigationBar, heroSectionContainer);
 // -------------Glimpse Section ------------------------------
 const glimpse = createSection();
 glimpse.id = "glimpse";
+glimpse.className = "glimpse relative";
+
+const rings = createImage(
+  "rings absolute",
+  "../resources/imgs/rings.svg",
+  "jedi-rings"
+);
 
 const glimpseContainer = createDiv();
 glimpseContainer.className =
@@ -147,17 +154,6 @@ glimpseItems.forEach((glimpseItem) => {
   glimpseBox.append(glimpseCard);
 });
 
-// const glimpseBtn = createA();
-// glimpseBtn.className = "jediBtn glimpseBtn flex flex-centre-y";
-// glimpseBtn.href = "#";
-// glimpseBtn.textContent = "More About Us";
-
-// const rightArrow2 = createImg();
-// rightArrow2.className = "rightArrow";
-// rightArrow2.src = "../resources/imgs/rightlineimg.svg";
-
-// glimpseBtn.append(rightArrow2);
-
 const glimpseBtn = createButton(
   false,
   "glimpseBtn",
@@ -169,7 +165,7 @@ const glimpseBtn = createButton(
   false
 );
 
-glimpse.appendChild(glimpseContainer);
+glimpse.append(rings, glimpseContainer);
 glimpseContainer.append(glipseTitle, glimpseBox, glimpseBtn);
 
 // ---------- Testimonial Section ---------------------------

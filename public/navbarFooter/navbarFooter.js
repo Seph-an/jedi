@@ -141,12 +141,12 @@ navlinks.setAttribute("data-visible", "false");
 navlinks.className = "primary-navigation flex";
 
 const links = [
-  { href: "home.ejs", text: "" },
-  { href: "home.ejs", text: "Home" },
-  { href: "home.ejs#testimonials", text: "Testimonials" },
-  { href: "products.ejs", text: "Products" },
-  { href: "about.ejs", text: "About" },
-  { href: "contact.ejs", text: "Contact" },
+  { href: "/", text: "" },
+  { href: "/", text: "Home" },
+  { href: "/#testimonials", text: "Testimonials" },
+  { href: "/products", text: "Products" },
+  { href: "about", text: "About" },
+  { href: "/contact", text: "Contact" },
   { href: "https://www.blog.jedipetfoods.com", text: "Blog" },
 ];
 
@@ -176,9 +176,10 @@ nav.appendChild(navContainer);
 navigationBar.append(topNav, nav);
 
 // --------------- Enter Footer Section --------------------------------
-function createSectionWithClasses(id) {
+function createSectionWithClasses(id, classes) {
   const section = createSection();
   section.id = id;
+  section.classes = classes;
   return section;
 }
 
@@ -186,6 +187,12 @@ function createDivWithClasses(classNames) {
   const div = createDiv();
   div.className = classNames;
   return div;
+}
+function createH1WithClasses(classNames, content) {
+  const h1 = createH1();
+  h1.className = classNames;
+  h1.textContent = content;
+  return h1;
 }
 function createH2WithClasses(classNames, content) {
   const h2 = createH2();
