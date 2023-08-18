@@ -4,13 +4,13 @@ const ourStoryContainer = createDivWithClasses(
   "ourStoryContainer container flex flex-col flex-centre-y"
 );
 
-const storyHeader = createH1WithClasses("storyHeader subTitles", "Who We Are");
+const storyHeader = createH1WithClasses("storyHeader", "Who We Are");
 
 const storyImageContainer = createDivWithClasses("storyContainer flex");
 
 const storyContainer = createDivWithClasses("storyContainer flex");
 
-const storyTitle = createH2WithClasses("storyTitle flex", "Our Story");
+const storyTitle = createH2WithClasses("storyTitle subTitles", "Our Story");
 
 const story = createPWithClasses(
   "story",
@@ -31,31 +31,57 @@ Donec diam et fermentum purus fusce adipiscing risus pretium ut. Luctus amet
 //   "A story about how Jedi Pet Foods started"
 // );
 
-// const curve = createImage("curve", "../resources/imgs/curve.svg", "c");
+const curve = createImage("curve", "../resources/imgs/curve.svg", "c");
 
 storyContainer.append(storyTitle, story);
 // storyImageContainer.append(storyContainer, storyImage);
 storyImageContainer.append(storyContainer);
+// ourStoryContainer.append(storyHeader, storyImageContainer);
 ourStoryContainer.append(storyHeader, storyImageContainer);
-// ourStoryContainer.append(storyHeader, storyImageContainer, curve);
-ourStorySection.append(ourStoryContainer);
+ourStorySection.append(ourStoryContainer, curve);
 
 const aboutSection = createSectionWithClasses("aboutSection", "aboutSection");
 
-const aboutContainer = createDivWithClasses("aboutContainer container");
-
-const factorsDiv = createDivWithClasses("factorsDiv");
+const aboutContainer = createDivWithClasses(
+  "aboutContainer container flex flex-col flex-centre-y"
+);
+aboutSection.append(aboutContainer);
 
 const factorsTitle = createH2WithClasses(
   "factorsTitle subTitles",
   "What Drives Us"
 );
 
-const factorsMV = createDivWithClasses("factorsMV flex");
+const missionVisionDiv = createDivWithClasses("missionVisionDiv flex");
 
-const drivingFactorDiv = createDivWithClasses("drivingFactorDiv flex");
+const missionDiv = createDivWithClasses(
+  "missionDiv flex flex-col flex-centre-y"
+);
 
-const valuesDiv = createDivWithClasses("valuesDiv flex flex-col");
+const missionTitle = createRealH2WithClasses(
+  "missionTitle mvTitle",
+  "Our Mission"
+);
+
+const mission = createPWithClasses(
+  "mission",
+  `To provide pet lovers all over the world with healthy, tasty delicacies
+   for their furry friends while promoting local manufacturing & creating
+    employment opportunities.`
+);
+
+const visionDiv = createDivWithClasses("visionDiv flex flex-col flex-centre-y");
+
+const visionTitle = createRealH2WithClasses(
+  "visionTitle mvTitle",
+  "Our Vision"
+);
+
+const vision = createPWithClasses(
+  "vision",
+  `To be a key player in the production of healthy, 
+  nutritious, yummy pet foods in Africa.`
+);
 
 const valuesTitle = createH2WithClasses(
   "valuesTitle subTitles",
@@ -63,6 +89,28 @@ const valuesTitle = createH2WithClasses(
 );
 
 // const valuesGrid =
+const gridItems = [
+  {
+    title: "We Value People First",
+    content: `Making a positive impact in peoples’ lives while 
+    delivering high-quality and responsive services.`,
+    title: "We Are Responsible",
+    content: `Fulfilling our commitments to clients with a clear
+     understanding of the urgency and accountability inherent 
+     in those commitments.`,
+    title: "We Are A Family",
+    content: `Treating all with mutual respect, honour, dignity,
+     sensitivity and loyalty as we work together towards a common goal.`,
+    title: "We Are Innovative",
+    content: `Continuously striving for professional and personal
+     growth and looking for creative solutions to evolve and adapt
+      to be at the forefront of the industry and our operations.`,
+    title: "We Are Guided By Top Standards",
+    content: `Upholding the highest levels of professionalism,
+    integrity, impartiality, honesty, ethical conduct, and
+    attitude in all relations.`,
+  },
+];
 
 const contactBtn = createButton(
   false,
@@ -74,11 +122,14 @@ const contactBtn = createButton(
   false,
   false
 );
-
-factorsDiv.append(factorsTitle, factorsMV);
-valuesDiv.append(valuesTitle, contactBtn);
-aboutContainer.append(factorsDiv, valuesDiv);
+missionDiv.append(missionTitle, mission);
+visionDiv.append(visionTitle, vision);
+missionVisionDiv.append(missionDiv, visionDiv);
+aboutContainer.append(factorsTitle, missionVisionDiv, valuesTitle, contactBtn);
 aboutSection.append(aboutContainer);
+// factorsDiv.append(factorsTitle, factorsMV);
+// valuesDiv.append(valuesTitle, contactBtn);
+// aboutContainer.append(factorsDiv, valuesDiv);
 
 const whatSection = createSectionWithClasses("whatSection", "whatSection");
 
@@ -135,4 +186,10 @@ whatSection.append(whatContainer);
 
 document
   .querySelector("body")
-  .append(ourStorySection, aboutSection, whatSection, footerSection);
+  .append(
+    navigationBar,
+    ourStorySection,
+    aboutSection,
+    whatSection,
+    footerSection
+  );

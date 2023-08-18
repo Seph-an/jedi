@@ -145,7 +145,7 @@ const links = [
   { href: "/", text: "Home" },
   { href: "/#testimonials", text: "Testimonials" },
   { href: "/products", text: "Products" },
-  { href: "about", text: "About" },
+  { href: "/about", text: "About" },
   { href: "/contact", text: "Contact" },
   { href: "https://www.blog.jedipetfoods.com", text: "Blog" },
 ];
@@ -166,9 +166,6 @@ for (let i = 0; i < links.length; i++) {
     navContainer.appendChild(link);
   }
 }
-const currentPath = window.location.pathname;
-
-console.log("The current path is:", currentPath);
 
 navlinksAndCart.append(navlinks, cartContainer);
 navContainer.append(navlinksAndCart, button);
@@ -196,6 +193,13 @@ function createH1WithClasses(classNames, content) {
 }
 function createH2WithClasses(classNames, content) {
   const h2 = createH2();
+  h2.className = classNames;
+  h2.textContent = content;
+  return h2;
+}
+
+function createRealH2WithClasses(classNames, content) {
+  const h2 = document.createElement("h2");
   h2.className = classNames;
   h2.textContent = content;
   return h2;
@@ -357,3 +361,18 @@ footerSection.append(footerContainer, footer);
 
 //cart funtionality
 //logged in and out functionality
+const currentPath = window.location.pathname;
+
+console.log("The current path is:", currentPath);
+
+// Get all anchor tags in the navigation
+const navigationLinks = document.querySelectorAll("nav a");
+
+// Iterate through the anchor tags
+navigationLinks.forEach((link) => {
+  // Compare the link's href with the current page's URL
+  if (link.href === currentPath) {
+    // Add a class to the active link
+    link.classList.add("active");
+  }
+});

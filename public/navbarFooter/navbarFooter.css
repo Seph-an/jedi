@@ -123,6 +123,13 @@ body {
   color: var(--tertiary-color);
 }
 
+/* .navlink:active {
+  color: var(--tertiary-color);
+} */
+/* .active {
+  color: var(--tertiary-color);
+} */
+
 .navlinksAndCart {
   width: 60%;
   justify-content: space-between;

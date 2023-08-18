@@ -1,6 +1,102 @@
+#ourStorySection h3,
+#aboutSection h3 {
+  font-size: 1.5rem;
+  color: var(--color-five);
+}
 #ourStorySection {
   background-color: var(--primary-color);
 }
 .ourStoryContainer {
-  padding: 3rem 0;
+  padding: 3rem 0 0 0;
+  gap: 1rem;
+  /* background-color: aquamarine; */
+  z-index: -1;
+}
+.storyHeader {
+  font-family: var(--secondary-font-two);
+  color: var(--secondary-color);
+  font-size: 2.25rem;
+  /* background-image: url("../resources/imgs/header-bg.svg");
+  background-size: cover;
+  background-position: center; */
+  padding: 0.625rem;
+  position: relative;
+  z-index: 3;
+}
+.storyHeader::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  /* width: 22.65625rem; */
+  width: 100%;
+  height: 100%;
+  background-image: url("../resources/imgs/header-back.svg");
+  background-size: cover; /* Adjust the sizing of the background */
+  background-position: center; /* Adjust the position of the background */
+  z-index: -1; /* Place the background behind the text */
+}
+.story {
+  color: var(--secondary-color);
+}
+.curve {
+  /* align-self: flex-end; */
+  margin-bottom: -0.3125rem;
+  width: 100%;
+}
+#aboutSection {
+  background-color: var(--color-two);
+}
+.aboutContainer {
+  padding-bottom: 3rem;
+  /* background-color: aquamarine; */
+  gap: 1.5rem;
+}
+
+.contactBtn img,
+.whatBtn img {
+  width: 1.7rem;
+}
+
+.missionVisionDiv {
+  color: var(--secondary-color);
+  gap: 1rem;
+  margin: 2rem 0;
+}
+.missionVisionDiv div {
+  padding: 2rem;
+  border-radius: 0.625rem;
+  color: var(--color-two);
+  background-color: var(--color-five);
+  text-align: center;
+  gap: 1rem;
+}
+/* .mvTitle {
+  font-weight: 600;
+} */
+.missionDiv {
+  background-color: bisque;
+  flex: 1;
+  order: 2;
+}
+.visionDiv {
+  order: 1;
+  background-color: cadetblue;
+  flex: 1;
+}
+
+.grid-container {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+}
+
+.grid-item {
+  background-color: lightgray;
+  padding: 20px;
+}
+/* Additional styles for different rows */
+.grid-item:nth-child(4),
+.grid-item:nth-child(5) {
+  grid-row: 2;
 }
