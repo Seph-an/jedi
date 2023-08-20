@@ -2,7 +2,7 @@ const ourStorySection = createSectionWithClasses("ourStorySection", "relative");
 
 const multiRings = createImage(
   "multi-rings absolute",
-  "../resources/imgs/multi-rings.svg",
+  "../resources/imgs/plain-rings.svg",
   "Jedi Pet Food Rings"
 );
 
@@ -26,17 +26,20 @@ const storyContainer = createDivWithClasses(
 
 const storyTitle = createH2WithClasses("storyTitle subTitles", "Our Story");
 
-const story = createPWithClasses(
+const story = createDivWithClasses("story flex flex-col flex-centre-y");
+
+const paragraph1 = createPWithClasses(
   "story",
   `Lorem ipsum dolor sit amet consectetur. Quam elit quis donec id et. Donec diam
-   et fermentum purus fusce adipiscing risus pretium ut. Luctus amet integer 
-   convallis sit metus convallis molestie posuere. A turpis pulvinar quam 
-   sit nec ipsum viverra ac.
-Lorem ipsum dolor sit amet consectetur. Quam elit quis donec id et. 
-Donec diam et fermentum purus fusce adipiscing risus pretium ut. Luctus amet
- integer convallis sit metus convallis molestie posuere. A turpis pulvinar 
- quam sit nec ipsum viverra ac.`
+   et fermentum purus fusce adipiscing risus pretium ut. Luctus amet integer convallis sit metus convallis molestie posuere`
 );
+
+const paragraph2 = createPWithClasses(
+  "story",
+  `Luctus amet integer convallis sit metus convallis molestie posuere. 
+  A turpis pulvinar quam sit nec ipsum viverra ac.`
+);
+story.append(paragraph1, paragraph2);
 
 const storyImageDiv = createDivWithClasses("storyImageDiv flex flex-centre-xy");
 const storyImage = createImage(
@@ -49,7 +52,7 @@ const curve = createImage("curve", "../resources/imgs/curve.svg", "c");
 storyContainer.append(storyTitle, story);
 storyImageDiv.append(storyImage);
 // storyImageContainer.append(storyContainer, storyImage);
-storyImageContainer.append(storyContainer, storyImageDiv);
+storyImageContainer.append(storyContainer);
 // ourStoryContainer.append(storyHeader, storyImageContainer);
 ourStoryContainer.append(storyHeader, storyImageContainer);
 storyImageDiv.append(storyImage);
@@ -179,32 +182,45 @@ const whatTitle = createH2WithClasses("whatTitle subTitles", "What We Do");
 
 const whatContainerDiv = createDivWithClasses("whatContainerDiv flex");
 
-const whatImagesDiv = createDivWithClasses("whatImagesDiv relative");
-
-// const whatImage = createImage(
-//   "whatImage absolute",
-//   "../resources/imgs/jediBags.svg",
-//   "Jedi Pet Foods"
-// );
-
-// const whatImageZigzag = createImage(
-//   "whatImageZigzag absolute",
-//   "../resources/imgs/zigzag.svg",
-//   "Jedi Pet Foods Background"
-// );
-
-const whatStoryDiv = createDivWithClasses("whatStoryDiv");
-
-const whatStory = createPWithClasses(
-  "whatStory",
-  `We run Kenyan based enterprise that manufactures kibbles; a type of dry
-   pet food. For cats. 
-
-High-tech extrusion machines, skilled stuff, highly nutritious recipes 
-and pure passion among others are employed in realizing a process that 
-churns out delicious pet delicacies under the brand name Jedi.`
+const whatImagesDiv = createDivWithClasses(
+  "whatImagesDiv relative flex flex-centre-xy"
 );
 
+const whatImage = createImage(
+  "whatImage absolute",
+  "../resources/imgs/story.svg",
+  "Jedi Pet Foods"
+);
+
+const whatImageZigzag = createImage(
+  "whatImageZigzag ",
+  "../resources/imgs/zigzag.svg",
+  "Jedi Pet Foods Background"
+);
+
+const whatStoryDiv = createDivWithClasses(
+  "whatStoryDiv flex flex-col flex-centre-xy"
+);
+
+const storyParagraphOne = createPWithClasses(
+  "what-story",
+  `We run Kenyan based enterprise that manufactures kibbles for cats; a type of dry
+pet food. `
+);
+
+const storyParagraphTwo = createPWithClasses("what-story");
+const whatStoryPart1 =
+  document.createTextNode(`High-tech processing machines, skilled personnel, highly nutritious recipes 
+and pure passion among others are employed in realizing a process that 
+churns out delicious pet delicacies under the brand name `);
+
+const whatStoryPart2 = document.createTextNode("Jedi");
+
+const whatStorySpan = document.createElement("span");
+whatStorySpan.appendChild(whatStoryPart2);
+
+storyParagraphTwo.append(whatStoryPart1, whatStorySpan);
+// ---------------------------------
 const whatBtn = createButton(
   false,
   "whatBtn",
@@ -216,9 +232,9 @@ const whatBtn = createButton(
   false
 );
 
-// whatImagesDiv.append(whatImageZigzag, whatImage);
-whatStoryDiv.append(whatStory);
-whatContainerDiv.append(whatImagesDiv);
+whatImagesDiv.append(whatImageZigzag, whatImage);
+whatStoryDiv.append(storyParagraphOne, storyParagraphTwo);
+whatContainerDiv.append(whatImagesDiv, whatStoryDiv);
 whatContainer.append(whatTitle, whatContainerDiv, whatBtn);
 whatSection.append(whatContainer);
 

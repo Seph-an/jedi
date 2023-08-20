@@ -7,14 +7,16 @@
   background-color: var(--primary-color);
 }
 .the-path {
-  top: 2rem;
-  left: 2rem;
-  width: 250px;
+  top: 4rem;
+  left: 3rem;
+  width: 14.375rem;
+  opacity: 0.6;
 }
 .multi-rings {
   top: 0;
   right: 0;
-  width: 250px;
+  width: 14.375rem;
+  opacity: 0.6;
 }
 .ourStoryContainer {
   padding: 3rem 0 0 0;
@@ -22,18 +24,17 @@
   /* background-color: aquamarine; */
   z-index: -1;
 }
-.storyHeader {
+.storyHeader,
+.whatTitle {
   font-family: var(--secondary-font-two);
   color: var(--secondary-color);
   font-size: 2.25rem;
-  /* background-image: url("../resources/imgs/header-bg.svg");
-  background-size: cover;
-  background-position: center; */
   padding: 0.625rem;
   position: relative;
   z-index: 3;
 }
-.storyHeader::before {
+.storyHeader::before,
+.whatTitle::before {
   content: "";
   position: absolute;
   top: 0;
@@ -47,15 +48,21 @@
   z-index: -1; /* Place the background behind the text */
 }
 .storyImageContainer {
-  margin-top: 3rem;
+  margin-top: 2rem;
 }
 .storyContainer {
   flex: 1;
   gap: 1rem;
+  /* background-color: aquamarine; */
 }
 .story {
   color: var(--secondary-color);
-  max-width: 80%;
+  /* background-color: bisque; */
+  /* max-width: 80%; */
+  width: 80%;
+  text-align: center;
+  font-size: 1.125rem;
+  gap: 0.625rem;
 }
 .storyImageDiv {
   flex: 1;
@@ -126,13 +133,47 @@
   gap: 0.625rem;
   text-align: center;
 }
-/* .values :nth-child(2) {
-  background-color: var(--color-seven);
-} */
+
 .item-2 {
   background-color: var(--color-seven);
 }
 .item h2 {
   font-size: 1.125rem;
   color: var(--color-five);
+}
+#whatSection {
+  background-color: var(--color-four);
+}
+.whatContainer {
+  padding: 3rem;
+  gap: 3rem;
+}
+.whatContainerDiv {
+  justify-content: space-between;
+}
+.whatImagesDiv {
+  flex: 1;
+}
+.whatImage {
+  width: 200px;
+}
+.whatImageZigzag {
+  width: 80%;
+}
+.whatStoryDiv {
+  flex: 1;
+  padding: 0 1rem;
+  font-size: 1.25rem;
+  gap: 0.635rem;
+  color: var(--secondary-color);
+}
+.what-story span {
+  /* color: var(--color-five); */
+  color: var(--tertiary-color);
+  font-weight: 700;
+}
+.whatTitle::before {
+  /* width: 100%;
+  height: 100%; */
+  background-image: url("../resources/imgs/header-back-what.svg");
 }
