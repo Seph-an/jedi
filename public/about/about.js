@@ -1,4 +1,16 @@
-const ourStorySection = createSectionWithClasses("ourStorySection");
+const ourStorySection = createSectionWithClasses("ourStorySection", "relative");
+
+const multiRings = createImage(
+  "multi-rings absolute",
+  "../resources/imgs/multi-rings.svg",
+  "Jedi Pet Food Rings"
+);
+
+const thePath = createImage(
+  "the-path absolute",
+  "../resources/imgs/the-path.svg",
+  "Jedi Pet Food Path"
+);
 
 const ourStoryContainer = createDivWithClasses(
   "ourStoryContainer container flex flex-col flex-centre-y"
@@ -6,9 +18,11 @@ const ourStoryContainer = createDivWithClasses(
 
 const storyHeader = createH1WithClasses("storyHeader", "Who We Are");
 
-const storyImageContainer = createDivWithClasses("storyContainer flex");
+const storyImageContainer = createDivWithClasses("storyImageContainer flex");
 
-const storyContainer = createDivWithClasses("storyContainer flex");
+const storyContainer = createDivWithClasses(
+  "storyContainer flex flex-col flex-centre-y"
+);
 
 const storyTitle = createH2WithClasses("storyTitle subTitles", "Our Story");
 
@@ -18,27 +32,29 @@ const story = createPWithClasses(
    et fermentum purus fusce adipiscing risus pretium ut. Luctus amet integer 
    convallis sit metus convallis molestie posuere. A turpis pulvinar quam 
    sit nec ipsum viverra ac.
-
 Lorem ipsum dolor sit amet consectetur. Quam elit quis donec id et. 
 Donec diam et fermentum purus fusce adipiscing risus pretium ut. Luctus amet
  integer convallis sit metus convallis molestie posuere. A turpis pulvinar 
  quam sit nec ipsum viverra ac.`
 );
 
-// const storyImage = createImage(
-//   "storyImage",
-//   "../resources/imgs/story.svg",
-//   "A story about how Jedi Pet Foods started"
-// );
+const storyImageDiv = createDivWithClasses("storyImageDiv flex flex-centre-xy");
+const storyImage = createImage(
+  "storyImage",
+  "../resources/imgs/story.svg",
+  "A story about how Jedi Pet Foods started"
+);
 
 const curve = createImage("curve", "../resources/imgs/curve.svg", "c");
-
 storyContainer.append(storyTitle, story);
+storyImageDiv.append(storyImage);
 // storyImageContainer.append(storyContainer, storyImage);
-storyImageContainer.append(storyContainer);
+storyImageContainer.append(storyContainer, storyImageDiv);
 // ourStoryContainer.append(storyHeader, storyImageContainer);
 ourStoryContainer.append(storyHeader, storyImageContainer);
-ourStorySection.append(ourStoryContainer, curve);
+storyImageDiv.append(storyImage);
+
+ourStorySection.append(ourStoryContainer, thePath, multiRings, curve);
 
 const aboutSection = createSectionWithClasses("aboutSection", "aboutSection");
 
@@ -94,17 +110,25 @@ const gridItems = [
     title: "We Value People First",
     content: `Making a positive impact in peoples’ lives while 
     delivering high-quality and responsive services.`,
+  },
+  {
     title: "We Are Responsible",
     content: `Fulfilling our commitments to clients with a clear
-     understanding of the urgency and accountability inherent 
-     in those commitments.`,
+    understanding of the urgency and accountability inherent 
+    in those commitments.`,
+  },
+  {
     title: "We Are A Family",
     content: `Treating all with mutual respect, honour, dignity,
      sensitivity and loyalty as we work together towards a common goal.`,
+  },
+  {
     title: "We Are Innovative",
     content: `Continuously striving for professional and personal
      growth and looking for creative solutions to evolve and adapt
       to be at the forefront of the industry and our operations.`,
+  },
+  {
     title: "We Are Guided By Top Standards",
     content: `Upholding the highest levels of professionalism,
     integrity, impartiality, honesty, ethical conduct, and
@@ -112,6 +136,17 @@ const gridItems = [
   },
 ];
 
+const values = createDivWithClasses("values flex flex-centre-x");
+
+gridItems.forEach((gridItem, index) => {
+  const item = createDivWithClasses(
+    `item item-${index + 1} flex flex-col flex-centre-y`
+  );
+  const itemTitle = createRealH2WithClasses("item-title", `${gridItem.title}`);
+  const itemContent = createPWithClasses("item-content", `${gridItem.content}`);
+  item.append(itemTitle, itemContent);
+  values.append(item);
+});
 const contactBtn = createButton(
   false,
   "contactBtn",
@@ -125,11 +160,14 @@ const contactBtn = createButton(
 missionDiv.append(missionTitle, mission);
 visionDiv.append(visionTitle, vision);
 missionVisionDiv.append(missionDiv, visionDiv);
-aboutContainer.append(factorsTitle, missionVisionDiv, valuesTitle, contactBtn);
+aboutContainer.append(
+  factorsTitle,
+  missionVisionDiv,
+  valuesTitle,
+  values,
+  contactBtn
+);
 aboutSection.append(aboutContainer);
-// factorsDiv.append(factorsTitle, factorsMV);
-// valuesDiv.append(valuesTitle, contactBtn);
-// aboutContainer.append(factorsDiv, valuesDiv);
 
 const whatSection = createSectionWithClasses("whatSection", "whatSection");
 
@@ -184,12 +222,11 @@ whatContainerDiv.append(whatImagesDiv);
 whatContainer.append(whatTitle, whatContainerDiv, whatBtn);
 whatSection.append(whatContainer);
 
-document
-  .querySelector("body")
-  .append(
-    navigationBar,
-    ourStorySection,
-    aboutSection,
-    whatSection,
-    footerSection
-  );
+document.querySelector("body").append(
+  navigationBar,
+  ourStorySection,
+  aboutSection,
+
+  whatSection,
+  footerSection
+);

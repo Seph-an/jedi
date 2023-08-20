@@ -176,7 +176,7 @@ navigationBar.append(topNav, nav);
 function createSectionWithClasses(id, classes) {
   const section = createSection();
   section.id = id;
-  section.classes = classes;
+  section.className = classes;
   return section;
 }
 
