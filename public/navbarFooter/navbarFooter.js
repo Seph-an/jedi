@@ -14,17 +14,6 @@ const createImg = () => document.createElement("img");
 const createUl = () => document.createElement("ul");
 const createLi = () => document.createElement("li");
 
-//if twoicons is true, it means the btn has two icons
-//use case
-// const buttonWithImageFirst = createButtonWithOptions(
-//   false //true if you want to have icon text icon
-//   'myButton imageFirst', //button classes
-//   '#', //href
-//   'Click Me', //words on button
-//   'image-url.jpg', //icon or image one
-//   'image-url2.jpg', //icon or image two
-//   true // true if you want image to come first
-// );
 function createButton(
   twoicons = true,
   classes,
@@ -84,6 +73,8 @@ const deliveryNum = createP();
 deliveryNum.className = "deliveryNum";
 deliveryNum.textContent = `Free Delivery for Orders Above Ksh: 5,000 | Call: +254 - 713 - 309 - 025`;
 
+//a div should be added here that contains both avater and logout icons
+//the appropriate icon displayed accordingly.
 const logInOut = createImg();
 logInOut.className = "logInOut img-settings";
 logInOut.src = "../resources/imgs/avatar.svg";
@@ -242,7 +233,12 @@ function createLabelAndInput(
   value,
   id
 ) {
-  const div = createDivWithClasses("label-input flex flex-col");
+  const div = createDiv();
+  div.className = "label-input flex flex-col";
+  // const div = createDivWithClasses("label-input flex flex-col");
+  const textarea = document.createElement("textarea");
+  textarea.placeholder = placeholder;
+  textarea.setAttribute("rows", "5");
   const input = createInputField(classNames, type, placeholder, value, id);
   const formLabel = createLabel();
   formLabel.textContent = label;
@@ -250,9 +246,8 @@ function createLabelAndInput(
   if (compulsory) {
     formLabel.className = "for-compulsory";
   }
-  const textarea = document.createElement("textarea");
-  textarea.placeholder = placeholder;
   if (textArea) {
+    div.className = "label-textarea flex flex-col";
     div.append(formLabel, textarea);
   } else {
     div.append(formLabel, input);

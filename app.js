@@ -18,7 +18,6 @@ const pages = [
   { route: "/checkout", file: "checkout" },
   { route: "/product", file: "product" },
   { route: "/interface", file: "interface" },
-  { route: "/navbarFooter", file: "navbarFooter" },
   { route: "/login", file: "login" },
 ];
 // Middleware to handle rendering with ".ejs" extension
