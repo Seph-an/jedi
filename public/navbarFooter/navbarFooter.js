@@ -222,7 +222,7 @@ function createImage(classNames, src, tag) {
   img.tag = tag;
   return img;
 }
-function createInputField(classNames, type, placeholder, value) {
+function createInputField(classNames, type, placeholder, value, id) {
   const inputElement = document.createElement("input");
   inputElement.type = type;
   inputElement.className = classNames;
@@ -230,6 +230,35 @@ function createInputField(classNames, type, placeholder, value) {
   inputElement.required = true;
   inputElement.value = value;
   return inputElement;
+}
+
+function createLabelAndInput(
+  label,
+  compulsory = true,
+  textArea = true,
+  classNames,
+  type,
+  placeholder,
+  value,
+  id
+) {
+  const div = createDivWithClasses("label-input flex flex-col");
+  const input = createInputField(classNames, type, placeholder, value, id);
+  const formLabel = createLabel();
+  formLabel.textContent = label;
+  formLabel.setAttribute("for", id);
+  if (compulsory) {
+    formLabel.className = "for-compulsory";
+  }
+  const textarea = document.createElement("textarea");
+  textarea.placeholder = placeholder;
+  if (textArea) {
+    div.append(formLabel, textarea);
+  } else {
+    div.append(formLabel, input);
+  }
+
+  return div;
 }
 
 function createList(ulClassName, items, useAnchors = false) {

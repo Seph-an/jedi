@@ -37,6 +37,7 @@
   --color-five: #3c41e1;
   --color-six: #bbbdfb;
   --color-seven: #a1cbff;
+  --color-eight: #fa0303;
   --view-width: 100vw;
   --primary-font: "Varela-Round";
   --secondary-font-one: "Fredoka-Regular";
@@ -136,7 +137,7 @@ body {
 }
 .cartContainer {
   font-size: 0.875rem;
-  color: #fa0303;
+  color: var(--color-eight);
   cursor: pointer;
   transition: ease-in-out 0.3s;
 }
