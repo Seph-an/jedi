@@ -132,7 +132,7 @@ const message = createLabelAndInput(
   true,
   "message",
   "",
-  "",
+  "Enter your message ...",
   "",
   "message"
 );
@@ -210,7 +210,7 @@ const mailContentDiv = createDivWithClasses(
 
 const mailContent = createList(
   "mail-content getintouch-content flex flex-col flex-centre-y",
-  ["info@jedipetfoods.com", "inquiry@jedipetfoods.com"],
+  ["inquiry@jedipetfoods.com", "info@jedipetfoods.com"],
   false
 );
 

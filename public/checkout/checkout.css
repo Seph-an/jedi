@@ -1,0 +1,13 @@
+#checkout-section {
+  background-color: var(--primary-color);
+}
+.checkout-container {
+  padding: 3rem 0;
+}
+.checkout-form {
+  border-radius: 1rem;
+  border: 0.1875rem var(--color-five) solid;
+  padding: 1.5rem 1rem;
+  width: 70%;
+  gap: 0.875rem;
+}

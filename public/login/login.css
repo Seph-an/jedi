@@ -1,0 +1,68 @@
+#login-section {
+  /* background-color: var(--primary-color); */
+  background: linear-gradient(90deg, #e6e7fb 32.71%, #a1cbff 100%);
+  height: 100vh;
+  width: 100vw;
+}
+
+.login-container {
+  /* background-color: aquamarine; */
+  height: 100%;
+  color: var(--secondary-color);
+  /* padding: ; */
+  gap: 1.125rem;
+  margin-top: -3rem;
+}
+
+.login-header {
+  color: var(--color-five);
+  font-family: var(--secondary-font-two);
+  font-size: 1.5rem;
+  /* width: 300px; */
+  /* text-align: center; */
+}
+.login-form {
+  border-radius: 1rem;
+  border: 0.1875rem var(--color-five) solid;
+  padding: 1.5rem 1rem;
+  width: 300px;
+  gap: 0.875rem;
+}
+/* ------------------------ */
+.label-input {
+  width: 100%;
+  color: var(--color-five);
+  gap: 0.5rem;
+}
+.label-input label {
+  font-weight: 600;
+}
+
+.label-input input {
+  font-size: 1rem;
+  /* text-align: center; */
+  background-color: transparent;
+  color: var(--secondary-color);
+  border: 0.125rem var(--color-five) solid;
+  padding: 0.5rem;
+  transition: ease-in-out 0.3s;
+  border-radius: 0.3125rem;
+}
+
+.label-input input:focus,
+.label-input input:hover {
+  outline: none;
+  border-color: var(--tertiary-color);
+}
+.login-btn {
+  margin-top: 0.5rem;
+  width: 100%;
+  justify-content: center;
+}
+.login-btn img {
+  width: 1.5rem;
+}
+.forgot-pwd {
+  color: var(--color-five);
+  font-size: 1.125rem;
+}
