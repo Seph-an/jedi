@@ -56,6 +56,42 @@ function createButton(
 
   return button;
 }
+
+// ------------_Radio Button ---------------------------
+function createRadioButton(labelText, checked = true) {
+  const radio = document.createElement("label");
+  radio.classList.add("container");
+  radio.textContent = labelText;
+
+  const radioInput = document.createElement("input");
+  radioInput.type = "radio";
+  if (checked) {
+    radioInput.checked = true;
+  }
+  radioInput.name = "radio";
+
+  const checkmarkSpan = document.createElement("span");
+  // checkmarkSpan.classList.add("checkmark");
+  checkmarkSpan.className = "checkmark";
+
+  radio.appendChild(radioInput);
+  radio.appendChild(checkmarkSpan);
+
+  return radio;
+}
+//------------radio-------------------------------
+const formSub = createPWithClasses("formSub");
+
+const formSubOne = document.createTextNode(`Fields marked with `);
+
+const formSubTwo = document.createTextNode("*");
+
+const formSubThree = document.createTextNode(` must be filled.`);
+
+const formSubSpan = document.createElement("span");
+
+formSubSpan.appendChild(formSubTwo);
+formSub.append(formSubOne, formSubSpan, formSubThree);
 //navigation bar
 const navigationBar = createDiv();
 navigationBar.className = "navigationBar flex flex-col";

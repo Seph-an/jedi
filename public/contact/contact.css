@@ -48,12 +48,12 @@
   color: var(--color-five);
   font-size: 1.5rem;
 }
-.formSub {
+/* .formSub {
   font-size: 1.125rem;
 }
 .formSub span {
   color: #fa0303;
-}
+} */
 
 .contact-form {
   border-radius: 1rem;
@@ -70,6 +70,8 @@
   gap: 1rem;
 }
 
+/* repeated in at least 3 pages make a point to consolidate and
+avoid repetition */
 .label-input {
   width: 50%;
   color: var(--color-five);
@@ -80,7 +82,6 @@
 
 .label-input input {
   font-size: 1rem;
-  /* text-align: center; */
   background-color: transparent;
   color: var(--secondary-color);
   border: none;
@@ -121,7 +122,6 @@
   border: 0.125rem var(--color-five) solid;
   border-radius: 0.875rem;
   padding: 0.875rem 0.125rem;
-  /* text-align: center; */
   margin-top: 0.5rem;
   color: var(--secondary-color);
   font-size: 1rem;

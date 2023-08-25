@@ -238,11 +238,12 @@ whatContainerDiv.append(whatImagesDiv, whatStoryDiv);
 whatContainer.append(whatTitle, whatContainerDiv, whatBtn);
 whatSection.append(whatContainer);
 
-document.querySelector("body").append(
-  navigationBar,
-  ourStorySection,
-  aboutSection,
-
-  whatSection,
-  footerSection
-);
+document
+  .querySelector("body")
+  .append(
+    navigationBar,
+    ourStorySection,
+    aboutSection,
+    whatSection,
+    footerSection
+  );

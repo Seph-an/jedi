@@ -33,15 +33,15 @@ const formDiv = createDivWithClasses(
 
 const formHeader = createH2WithClasses("form-header", "Rapid Response!");
 
-const formSub = createPWithClasses("formSub");
+// const formSub = createPWithClasses("formSub");
 
-const formSubOne = document.createTextNode(`Fields marked with `);
+// const formSubOne = document.createTextNode(`Fields marked with `);
 
-const formSubTwo = document.createTextNode("*");
+// const formSubTwo = document.createTextNode("*");
 
-const formSubThree = document.createTextNode(` must be filled.`);
+// const formSubThree = document.createTextNode(` must be filled.`);
 
-const formSubSpan = document.createElement("span");
+// const formSubSpan = document.createElement("span");
 
 const contactForm = document.createElement("form");
 contactForm.className = "contact-form flex flex-col flex-centre-y";
@@ -159,8 +159,8 @@ contactForm.append(
   formBtn
 );
 
-formSubSpan.appendChild(formSubTwo);
-formSub.append(formSubOne, formSubSpan, formSubThree);
+// formSubSpan.appendChild(formSubTwo);
+// formSub.append(formSubOne, formSubSpan, formSubThree);
 
 formDiv.append(formHeader, formSub, contactForm);
 
