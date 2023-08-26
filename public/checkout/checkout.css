@@ -59,7 +59,7 @@
   width: 100%;
   border: 0.125rem var(--color-five) solid;
   border-radius: 0.875rem;
-  padding: 0.875rem 0.125rem;
+  padding: 1rem;
   margin-top: 0.5rem;
   color: var(--secondary-color);
   font-size: 1rem;
@@ -73,6 +73,17 @@
 .amount-due span {
   color: var(--color-five);
 }
+.radio-btns {
+  /* background-color: aquamarine; */
+  width: inherit;
+  gap: 1rem;
+}
+.radio-input.blue-bg {
+  background-color: #1283fe;
+}
+/* .pay-now {
+  width: inherit;
+} */
 .checkout-btn {
   margin-top: 2rem;
 }

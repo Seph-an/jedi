@@ -58,24 +58,17 @@ function createButton(
 }
 
 // ------------_Radio Button ---------------------------
-function createRadioButton(labelText, checked = true) {
-  const radio = document.createElement("label");
-  radio.classList.add("container");
-  radio.textContent = labelText;
+function createCustomRadio(className, optionLabel) {
+  const radio = createDivWithClasses("radio flex flex-centre-y");
 
-  const radioInput = document.createElement("input");
-  radioInput.type = "radio";
-  if (checked) {
-    radioInput.checked = true;
-  }
-  radioInput.name = "radio";
+  const radioInput = document.createElement("div");
+  radioInput.className = `radio-input ${className}`;
 
-  const checkmarkSpan = document.createElement("span");
-  // checkmarkSpan.classList.add("checkmark");
-  checkmarkSpan.className = "checkmark";
+  const label = document.createElement("P");
+  label.className = "radio-label";
+  label.textContent = optionLabel;
 
-  radio.appendChild(radioInput);
-  radio.appendChild(checkmarkSpan);
+  radio.append(radioInput, label);
 
   return radio;
 }
@@ -436,3 +429,9 @@ navigationLinks.forEach((link) => {
     link.classList.add("active");
   }
 });
+
+// const delegateSubmitToBody = document.body;
+// delegateSubmitToBody.addEventListener("submit", submitFired);
+
+// const delegateClickToBody = document.body;
+// delegateClickToBody.addEventListener("click", clickFired);

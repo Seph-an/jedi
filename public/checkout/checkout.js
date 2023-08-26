@@ -72,9 +72,22 @@ const amount = document.createElement("span");
 amount.append(amountPartTwo);
 amountDue.append(amoutPartOne, amount);
 
-const mpesa = createRadioButton("Pay now via M-Pesa", true);
+const radioBtns = createDivWithClasses("radio-btns flex flex-col");
 
-const onDelivery = createRadioButton("Cash on delivery", false);
+const mpesa = createCustomRadio("mpesa", "Pay now via M-Pesa");
+const payNow = createLabelAndInput(
+  "",
+  false,
+  false,
+  "pay-now",
+  "number",
+  "Enter M-Pesa number",
+  "",
+  "pay-now"
+);
+const onDelivery = createCustomRadio("on-delivery", "Cash on delivery");
+
+radioBtns.append(mpesa, payNow, onDelivery);
 
 const checkoutBtn = createButton(
   false,
@@ -94,8 +107,7 @@ checkoutForm.append(
   clientLocation,
   clientSpecialDetails,
   amountDue,
-  mpesa,
-  onDelivery,
+  radioBtns,
   checkoutBtn
 );
 
@@ -105,3 +117,47 @@ checkoutSection.append(checkoutContainer);
 document
   .querySelector("body")
   .append(navigationBar, checkoutSection, footerSection);
+
+const radioButtons = document.querySelectorAll(".radio-input");
+
+let activeRadio = null;
+
+// radioButtons.forEach((radioButton) => {
+//   radioButton.addEventListener("click", function () {
+//     if (activeRadio) {
+//       activeRadio.classList.remove("blue-bg");
+//     }
+//     if (activeRadio !== this) {
+//       this.classList.add("blue-bg");
+//       activeRadio = this;
+//     } else {
+//       activeRadio = null;
+//     }
+//   });
+// });
+radioButtons.forEach((radioButton) => {
+  radioButton.addEventListener("click", function () {
+    if (activeRadio !== this) {
+      if (activeRadio) {
+        activeRadio.classList.remove("blue-bg");
+      }
+      this.classList.add("blue-bg");
+      activeRadio = this;
+    }
+  });
+});
+
+// const delegateClickToBody = document.body;
+// delegateClickToBody.addEventListener("click", clickFired);
+
+// function clickFired(e) {
+//   if (e.target.classList.contains("radio-input")) {
+//     if (e.target.classList.contains("blue-bg")) {
+//       e.target.classList.remove("blue-bg");
+//       console.log("Background color changed to grey");
+//     } else {
+//       e.target.classList.add("blue-bg");
+//       console.log("Background color changed to blue");
+//     }
+//   }
+// }
