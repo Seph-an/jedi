@@ -125,6 +125,7 @@ body {
 .radio-input:focus {
   background-color: var(--tertiary-color);
   /* border-color: #686767; */
+  opacity: 0.5;
 }
 
 .radio P {

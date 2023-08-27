@@ -122,26 +122,18 @@ const radioButtons = document.querySelectorAll(".radio-input");
 
 let activeRadio = null;
 
-// radioButtons.forEach((radioButton) => {
-//   radioButton.addEventListener("click", function () {
-//     if (activeRadio) {
-//       activeRadio.classList.remove("blue-bg");
-//     }
-//     if (activeRadio !== this) {
-//       this.classList.add("blue-bg");
-//       activeRadio = this;
-//     } else {
-//       activeRadio = null;
-//     }
-//   });
-// });
 radioButtons.forEach((radioButton) => {
   radioButton.addEventListener("click", function () {
+    // Check if the clicked radio button is not the same as the currently active one.
     if (activeRadio !== this) {
-      if (activeRadio) {
+      // Check if there is an active radio button and if it has the "blue-bg" class.
+      if (activeRadio && activeRadio.classList.contains("blue-bg")) {
+        // If the active radio button has the "blue-bg" class, remove it.
         activeRadio.classList.remove("blue-bg");
       }
+      // Add the "blue-bg" class to the clicked radio button.
       this.classList.add("blue-bg");
+      // Set the currently clicked radio button as the new active radio button.
       activeRadio = this;
     }
   });
