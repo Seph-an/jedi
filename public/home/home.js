@@ -101,7 +101,7 @@ glipseTitle.textContent = "At a Glimpse";
 const glimpseItems = [
   {
     id: "quick",
-    icon: "quickDelivery.svg",
+    icon: "delivery-2.svg",
     title: "Quick Delivery",
     body: `Our competent team of qualified personnel and partners
      work together to guarantee that your order from Jedi Pet Foods
@@ -109,7 +109,7 @@ const glimpseItems = [
   },
   {
     id: "sus",
-    icon: "Sustainability.svg",
+    icon: "sustainability-UC.svg",
     title: "Sustainability",
     body: `In addition to minimising waste by making the most of our
      raw materials. We contribute to the global goal of fighting 
@@ -118,7 +118,7 @@ const glimpseItems = [
   },
   {
     id: "trace",
-    icon: "Traceability.svg",
+    icon: "traceability-2.svg",
     title: "Traceability",
     body: `We account for the origin of every unit raw material
      that goes into manufacturing our product on top of all other

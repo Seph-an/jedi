@@ -20,11 +20,11 @@
 .contact-header::before {
   content: "";
   position: absolute;
-  top: 25;
+  top: 0;
   left: 0;
   width: 100%;
   height: 100%;
-  background-image: url("../resources/imgs/freehand4.svg");
+  background-image: url("../resources/imgs/header-back.svg");
   background-size: cover;
   background-position: center;
   z-index: -1;

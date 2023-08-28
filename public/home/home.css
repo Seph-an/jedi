@@ -150,8 +150,17 @@
 .glimpseCard P {
   font-size: 1.0625rem;
 }
+/* .glimpseCard img {
+  background-color: aquamarine;
+} */
+/* .sus {
+  background-color: aqua;
+} */
+/* .sus img {
+  height: 3.5rem;
+} */
 .cardicon {
-  height: 3rem;
+  height: 3.5rem;
 }
 
 /* ---------- Enter Testimonials Section --------------- */
