@@ -68,7 +68,7 @@ heroSection.append(heroCopy, heroImgDiv);
 
 const heroNextBtn = createA();
 heroNextBtn.className = "heroNextBtn flex flex-centre-xy";
-heroNextBtn.href = "#";
+heroNextBtn.href = "/#glimpse";
 
 const arrowNext = createImg();
 arrowNext.className = "arrowNext";
@@ -101,7 +101,7 @@ glipseTitle.textContent = "At a Glimpse";
 const glimpseItems = [
   {
     id: "quick",
-    icon: "delivery-2.svg",
+    icon: "delivery-3.svg",
     title: "Quick Delivery",
     body: `Our competent team of qualified personnel and partners
      work together to guarantee that your order from Jedi Pet Foods
@@ -109,7 +109,7 @@ const glimpseItems = [
   },
   {
     id: "sus",
-    icon: "sustainability-UC.svg",
+    icon: "sustainability-3.svg",
     title: "Sustainability",
     body: `In addition to minimising waste by making the most of our
      raw materials. We contribute to the global goal of fighting 
@@ -118,7 +118,7 @@ const glimpseItems = [
   },
   {
     id: "trace",
-    icon: "traceability-2.svg",
+    icon: "traceability-3.svg",
     title: "Traceability",
     body: `We account for the origin of every unit raw material
      that goes into manufacturing our product on top of all other
@@ -157,7 +157,7 @@ glimpseItems.forEach((glimpseItem) => {
 const glimpseBtn = createButton(
   false,
   "glimpseBtn",
-  "#",
+  "/about",
   "More About Us",
   "",
   "../resources/imgs/rightlineimg.svg",

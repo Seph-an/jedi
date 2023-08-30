@@ -22,11 +22,13 @@ function createButton(
   imgSrc1,
   imgSrc2,
   imageFirst = true,
-  noicon = true
+  noicon = true,
+  type = "button" // Default type is "button"
 ) {
   const button = createA();
   button.className = `${classes} jediBtn flex flex-y`;
   button.href = href;
+  button.type = type;
 
   const text = createSpan();
   text.className = "buttonText";
@@ -72,7 +74,8 @@ function createCustomRadio(className, optionLabel) {
 
   return radio;
 }
-//------------radio-------------------------------
+//------------radio END-------------------------------
+
 const formSub = createPWithClasses("formSub");
 
 const formSubOne = document.createTextNode(`Fields marked with `);
@@ -104,15 +107,69 @@ deliveryNum.textContent = `Free Delivery for Orders Above Ksh: 5,000 | Call: +25
 
 //a div should be added here that contains both avater and logout icons
 //the appropriate icon displayed accordingly.
-const logInOut = createImg();
-logInOut.className = "logInOut img-settings";
-logInOut.src = "../resources/imgs/avatar.svg";
+// const login = createButton(
+//   false,
+//   "login-btn",
+//   "/login",
+//   "",
+//   "../resources/imgs/avatar.svg",
+//   "",
+//   false,
+//   false
+// );
+
+const login = createA();
+login.className = "in-out-icon";
+login.href = "/login";
+
+//create div instead of a tag, create a tag and append inIcon
+//append both the a tag and outIcon to the div
+
+const inIcon = createImg();
+inIcon.className = "in-icon";
+inIcon.src = "../resources/imgs/avatar.svg";
+
+const outIcon = createImg();
+outIcon.className = "out-icon";
+outIcon.src = "../resources/imgs/log-out.svg";
+
+// fetch("localhost:3000/check-session")
+//   .then((response) => response.json())
+//   .then((data) => {
+//     if (data && data.username) {
+//       login.append(outIcon);
+//     } else {
+//       login.append(inIcon);
+//     }
+//   })
+//   .catch((error) => {
+//     console.error("Error fetching user session:", error);
+//   });
+fetch("/check-session")
+  .then((response) => response.json())
+  .then((data) => {
+    if (data.loggedIn) {
+      //       login.append(outIcon);
+      console.log("User is logged in:", data.username);
+      // You can customize the UI or take actions for logged-in users
+    } else {
+      //       login.append(inIcon);
+
+      console.log("User is not logged in");
+      // You can show login/register options or customize UI accordingly
+    }
+  })
+  .catch((error) => {
+    console.error("Error checking session:", error);
+  });
+
+login.append(inIcon);
 
 const navRings = createImg();
 navRings.className = "navRings absolute img-settings";
 navRings.src = "../resources/imgs/topnavimg.svg";
 
-deliveryLog.append(deliveryNum, logInOut);
+deliveryLog.append(deliveryNum, login);
 
 topNavContainer.append(deliveryLog);
 
@@ -230,9 +287,10 @@ function createPWithClasses(classNames, content) {
   P.textContent = content;
   return P;
 }
-function createForm(classNames) {
+function createForm(classNames, id) {
   const form = document.createElement("form");
   form.className = classNames;
+  form.id = id;
   return form;
 }
 function createImage(classNames, src, tag) {
@@ -242,12 +300,13 @@ function createImage(classNames, src, tag) {
   img.tag = tag;
   return img;
 }
-function createInputField(classNames, type, placeholder, value, id) {
+function createInputField(classNames, type, placeholder, value, id, required) {
   const inputElement = document.createElement("input");
   inputElement.type = type;
   inputElement.className = classNames;
   inputElement.placeholder = placeholder;
-  inputElement.required = true;
+  // inputElement.required = required;
+  inputElement.setAttribute("required", required);
   inputElement.value = value;
   return inputElement;
 }
@@ -260,7 +319,8 @@ function createLabelAndInput(
   type,
   placeholder,
   value,
-  id
+  id,
+  required
 ) {
   const div = createDiv();
   div.className = "label-input flex flex-col";
@@ -268,7 +328,14 @@ function createLabelAndInput(
   const textarea = document.createElement("textarea");
   textarea.placeholder = placeholder;
   textarea.setAttribute("rows", "5");
-  const input = createInputField(classNames, type, placeholder, value, id);
+  const input = createInputField(
+    classNames,
+    type,
+    placeholder,
+    value,
+    id,
+    required
+  );
   const formLabel = createLabel();
   formLabel.textContent = label;
   formLabel.setAttribute("for", id);

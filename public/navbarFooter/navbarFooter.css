@@ -102,10 +102,12 @@ body {
 .container {
   width: 80%;
   margin: 0 auto;
-  /* padding: 2rem 0;
-  gap: 2rem;
-  z-index: -10; */
+  /* width: min(80%, 75rem); */
+  /* margin-inline: auto; */
 }
+/* .in-out-icon {
+  background-color: #7fffd4;
+} */
 /* -----------Radio button styling ------------- */
 .radio {
   /* background-color: antiquewhite; */
@@ -123,9 +125,10 @@ body {
 }
 .radio-input:hover,
 .radio-input:focus {
-  background-color: var(--tertiary-color);
+  border-color: var(--color-seven);
+  /* border-color: var(--tertiary-color); */
   /* border-color: #686767; */
-  opacity: 0.5;
+  /* opacity: 0.5; */
 }
 
 .radio P {
@@ -273,6 +276,9 @@ body {
 }
 .absolute {
   position: absolute;
+}
+.display-none {
+  display: none;
 }
 .img-settings {
   background-repeat: no-repeat;

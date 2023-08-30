@@ -141,7 +141,7 @@
 .glimpseCard {
   width: 18.75rem;
   gap: 1rem;
-  padding: 0.5rem 1rem;
+  padding: 1rem;
   border: 0.125rem var(--color-five) solid;
   border-radius: 0.625rem;
   color: var(--secondary-color);

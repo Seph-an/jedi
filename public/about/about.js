@@ -153,7 +153,7 @@ gridItems.forEach((gridItem, index) => {
 const contactBtn = createButton(
   false,
   "contactBtn",
-  "#",
+  "/contact",
   "Contact Us",
   "",
   "../resources/imgs/rightlineimg.svg",
@@ -224,7 +224,7 @@ storyParagraphTwo.append(whatStoryPart1, whatStorySpan);
 const whatBtn = createButton(
   false,
   "whatBtn",
-  "#",
+  "/products",
   "Explore Products",
   "",
   "../resources/imgs/rightlineimg.svg",
