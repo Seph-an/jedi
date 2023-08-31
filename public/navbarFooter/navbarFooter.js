@@ -118,42 +118,37 @@ deliveryNum.textContent = `Free Delivery for Orders Above Ksh: 5,000 | Call: +25
 //   false
 // );
 
+//create div instead of a tag, create a tag and append inIcon
+//append both the a tag and outIcon to the div
+//try redirecting in the backend now that we dont need data in login
+const logInOut = createDivWithClasses("log-in-out");
+
 const login = createA();
 login.className = "in-out-icon";
 login.href = "/login";
-
-//create div instead of a tag, create a tag and append inIcon
-//append both the a tag and outIcon to the div
 
 const inIcon = createImg();
 inIcon.className = "in-icon";
 inIcon.src = "../resources/imgs/avatar.svg";
 
+login.appendChild(inIcon);
+
 const outIcon = createImg();
 outIcon.className = "out-icon";
+outIcon.id = "out-icon";
 outIcon.src = "../resources/imgs/log-out.svg";
 
-// fetch("localhost:3000/check-session")
-//   .then((response) => response.json())
-//   .then((data) => {
-//     if (data && data.username) {
-//       login.append(outIcon);
-//     } else {
-//       login.append(inIcon);
-//     }
-//   })
-//   .catch((error) => {
-//     console.error("Error fetching user session:", error);
-//   });
 fetch("/check-session")
   .then((response) => response.json())
   .then((data) => {
     if (data.loggedIn) {
-      //       login.append(outIcon);
+      // login.append(outIcon);
+      logInOut.appendChild(outIcon);
       console.log("User is logged in:", data.username);
       // You can customize the UI or take actions for logged-in users
     } else {
-      //       login.append(inIcon);
+      // login.append(inIcon);
+      logInOut.appendChild(login);
 
       console.log("User is not logged in");
       // You can show login/register options or customize UI accordingly
@@ -163,13 +158,11 @@ fetch("/check-session")
     console.error("Error checking session:", error);
   });
 
-login.append(inIcon);
-
 const navRings = createImg();
 navRings.className = "navRings absolute img-settings";
 navRings.src = "../resources/imgs/topnavimg.svg";
 
-deliveryLog.append(deliveryNum, login);
+deliveryLog.append(deliveryNum, logInOut);
 
 topNavContainer.append(deliveryLog);
 
@@ -500,5 +493,22 @@ navigationLinks.forEach((link) => {
 // const delegateSubmitToBody = document.body;
 // delegateSubmitToBody.addEventListener("submit", submitFired);
 
-// const delegateClickToBody = document.body;
-// delegateClickToBody.addEventListener("click", clickFired);
+const delegateClickToBody = document.body;
+delegateClickToBody.addEventListener("click", clickFired);
+
+function clickFired(e) {
+  if (e.target.id == "out-icon") {
+    const url = "http://localhost:3000/logout";
+    const options = { method: "POST" };
+    fetch(url, options)
+      .then((response) => response.json())
+      .then((data) => {
+        if (data.success) {
+          window.location.href = "/";
+        }
+      })
+      .catch((error) => {
+        console.error("Error:", error);
+      });
+  }
+}

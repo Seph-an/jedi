@@ -101,7 +101,6 @@ app.post("/login", (req, res) => {
     }
   });
 });
-
 // Express.js backend route
 app.get("/check-session", (req, res) => {
   if (req.session.username) {
@@ -112,6 +111,17 @@ app.get("/check-session", (req, res) => {
     // User is not logged in
     res.status(200).json({ loggedIn: false });
   }
+});
+// Logout route
+app.post("/logout", (req, res) => {
+  req.session.destroy((error) => {
+    if (error) {
+      console.error("Error destroying session:", error);
+      res.status(500).json({ success: false });
+    } else {
+      res.json({ success: true });
+    }
+  });
 });
 
 // const port = 3000;

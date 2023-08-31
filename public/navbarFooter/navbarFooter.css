@@ -285,7 +285,9 @@ body {
   background-size: cover;
   cursor: pointer;
 }
-
+.log-in-out {
+  cursor: pointer;
+}
 /* ------------------------- Footer Styling ----------------------------- */
 #footerSection {
   background-color: var(--color-two);
