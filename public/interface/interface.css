@@ -1,0 +1,11 @@
+#interface-section {
+  background-color: var(--primary-color);
+}
+.interface-container {
+  color: var(--secondary-color);
+  gap: 1.125rem;
+  padding: 2rem 0;
+}
+/* .interface-container h1 {
+
+} */

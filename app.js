@@ -71,11 +71,34 @@ const renderWithEjs = (req, res, next) => {
 
 app.use(renderWithEjs);
 
+// pages.forEach((page) => {
+//   app.get(page.route, (req, res) => {
+//     res.render(page.file);
+//   });
+// });
+
+function isAuthenticated(req, res, next) {
+  if (req.session && req.session.username) {
+    return next();
+  }
+  res.redirect("/login");
+}
+
 pages.forEach((page) => {
-  app.get(page.route, (req, res) => {
-    res.render(page.file);
-  });
+  if (page.route === "/interface") {
+    app.get(page.route, isAuthenticated, (req, res) => {
+      res.render(page.file);
+    });
+  } else {
+    app.get(page.route, (req, res) => {
+      res.render(page.file);
+    });
+  }
 });
+
+// app.get("/interface", isAuthenticated, (req, res) => {
+//   res.render("interface");
+// });
 
 // Login route
 app.post("/login", (req, res) => {

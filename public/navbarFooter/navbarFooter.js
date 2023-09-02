@@ -480,6 +480,7 @@ console.log("The current path is:", currentPath);
 
 // Get all anchor tags in the navigation
 const navigationLinks = document.querySelectorAll("nav a");
+console.log("Le links sont:", navigationLinks);
 
 // Iterate through the anchor tags
 navigationLinks.forEach((link) => {
@@ -512,3 +513,12 @@ function clickFired(e) {
       });
   }
 }
+
+const popUp = createDivWithClasses("pop-up pop-up-none absolute flex flex-col");
+const closePop = createImage(
+  "close-pop",
+  "../resources/imgs/close-pop.svg",
+  "Close"
+);
+const popDiv = createDivWithClasses("pop-div flex flex-col flex-centre-y");
+popUp.append(closePop, popDiv);

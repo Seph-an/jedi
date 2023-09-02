@@ -53,21 +53,6 @@ const loginBtn = createLabelAndInput(
   ""
 );
 
-// const loginIcon = createImg();
-// loginIcon.className = "login-icon";
-// loginIcon.src = "../resources/imgs/login.svg";
-
-// const loginBtn = createButton(
-//   false,
-//   "login-btn",
-//   "",
-//   "Login",
-//   "",
-//   "../resources/imgs/login.svg",
-//   false,
-//   false,
-//   "submit"
-// );
 loginForm.append(user, password, loginBtn);
 
 const forgotPwd = createPWithClasses(
@@ -78,7 +63,10 @@ const forgotPwd = createPWithClasses(
 loginContainer.append(loginHeader, loginForm, forgotPwd);
 loginSection.append(navigationBar, loginContainer);
 
-document.querySelector("body").append(loginSection, footerSection);
+document.querySelector("body").append(loginSection, popUp, footerSection);
+
+const pop = document.querySelector(".pop-up");
+const popContentDiv = pop.querySelector(".pop-div");
 
 const delegateSubmitToBody = document.body;
 delegateSubmitToBody.addEventListener("submit", submitFired);
@@ -86,6 +74,7 @@ delegateSubmitToBody.addEventListener("submit", submitFired);
 function submitFired(e) {
   if (e.target.id === "login-form") {
     e.preventDefault();
+
     const form = e.target;
     const loginName = form.querySelector(".username").value;
     const loginPass = form.querySelector(".password").value;
@@ -113,10 +102,29 @@ function handleFormSubmitInquiry(username, password) {
       console.log("Status", res.status);
       if (res.status === 200) {
         console.log("Success loggin in");
-        window.location.href = "/";
+        window.location.href = "/interface";
         // return res.json();
       } else if (res.status === 401) {
-        console.log("Unauthorized");
+        console.log("Pop content before:", popContentDiv);
+        pop.classList.toggle("pop-up-none");
+
+        pop.style.background = "#fde8ec";
+        const popContent = createPWithClasses(
+          "pop-content",
+          "Wrong username or password!"
+        );
+        const popContent2 = createPWithClasses(
+          "pop-content",
+          "Consult admin if problem persists."
+        );
+        popContent.style.color = "#db0129";
+        popContentDiv.append(popContent, popContent2);
+        setTimeout(() => {
+          popContentDiv.removeChild(popContent);
+          popContentDiv.removeChild(popContent2);
+          pop.classList.toggle("pop-up-none");
+        }, 3000);
+        console.log("Pop content after:", popContentDiv);
       } else {
         console.log("Error");
       }
