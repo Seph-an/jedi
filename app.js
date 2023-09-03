@@ -71,12 +71,6 @@ const renderWithEjs = (req, res, next) => {
 
 app.use(renderWithEjs);
 
-// pages.forEach((page) => {
-//   app.get(page.route, (req, res) => {
-//     res.render(page.file);
-//   });
-// });
-
 function isAuthenticated(req, res, next) {
   if (req.session && req.session.username) {
     return next();

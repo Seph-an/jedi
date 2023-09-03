@@ -105,9 +105,7 @@ function handleFormSubmitInquiry(username, password) {
         window.location.href = "/interface";
         // return res.json();
       } else if (res.status === 401) {
-        console.log("Pop content before:", popContentDiv);
         pop.classList.toggle("pop-up-none");
-
         pop.style.background = "#fde8ec";
         const popContent = createPWithClasses(
           "pop-content",
@@ -119,12 +117,13 @@ function handleFormSubmitInquiry(username, password) {
         );
         popContent.style.color = "#db0129";
         popContentDiv.append(popContent, popContent2);
-        setTimeout(() => {
+        timerId = setTimeout(() => {
+          pop.style.background = "";
           popContentDiv.removeChild(popContent);
           popContentDiv.removeChild(popContent2);
           pop.classList.toggle("pop-up-none");
-        }, 3000);
-        console.log("Pop content after:", popContentDiv);
+        }, 2000);
+        //try clearing timerId on clicking x
       } else {
         console.log("Error");
       }

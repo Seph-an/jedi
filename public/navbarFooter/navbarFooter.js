@@ -13,7 +13,7 @@ const createSpan = () => document.createElement("span");
 const createImg = () => document.createElement("img");
 const createUl = () => document.createElement("ul");
 const createLi = () => document.createElement("li");
-
+let timerId;
 function createButton(
   twoicons = true,
   classes,
@@ -105,22 +105,6 @@ const deliveryNum = createP();
 deliveryNum.className = "deliveryNum";
 deliveryNum.textContent = `Free Delivery for Orders Above Ksh: 5,000 | Call: +254 - 713 - 309 - 025`;
 
-//a div should be added here that contains both avater and logout icons
-//the appropriate icon displayed accordingly.
-// const login = createButton(
-//   false,
-//   "login-btn",
-//   "/login",
-//   "",
-//   "../resources/imgs/avatar.svg",
-//   "",
-//   false,
-//   false
-// );
-
-//create div instead of a tag, create a tag and append inIcon
-//append both the a tag and outIcon to the div
-//try redirecting in the backend now that we dont need data in login
 const logInOut = createDivWithClasses("log-in-out");
 
 const login = createA();
@@ -142,16 +126,11 @@ fetch("/check-session")
   .then((response) => response.json())
   .then((data) => {
     if (data.loggedIn) {
-      // login.append(outIcon);
       logInOut.appendChild(outIcon);
       console.log("User is logged in:", data.username);
-      // You can customize the UI or take actions for logged-in users
     } else {
-      // login.append(inIcon);
       logInOut.appendChild(login);
-
       console.log("User is not logged in");
-      // You can show login/register options or customize UI accordingly
     }
   })
   .catch((error) => {
