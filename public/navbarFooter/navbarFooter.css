@@ -143,6 +143,29 @@ body {
   padding: 0.75rem;
   background-color: #1c1e5a;
 }
+.welcome {
+  color: var(--color-two);
+  /* font-size: 1.125rem; */
+  letter-spacing: 0.125rem;
+}
+.welcome span {
+  color: var(--tertiary-color-two);
+}
+.admin {
+  letter-spacing: 0.125rem;
+  text-decoration: none;
+  background-color: var(--color-two);
+  color: var(--secondary-color);
+  padding: 0.125rem 1rem;
+  border-radius: 0.125rem;
+  box-shadow: 0px 1px 6px 0px rgba(0, 0, 0, 0.25);
+  transition: ease-in-out 0.3s;
+}
+.admin:focus,
+.admin:hover {
+  background-color: var(--primary-color);
+  /* color: var(--color-four); */
+}
 .deliveryLog {
   width: 80%;
   gap: 3rem;

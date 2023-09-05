@@ -22,9 +22,19 @@ const timeLimit = createRealH2WithClasses(
   `Same Day Delivery Within Nairobi And Its Environs For Orders Before 3:00 PM EAT.`
 );
 jumbotron.append(timeLimit);
-const productsHeader = createH1WithClasses("products-header", "Our Products.");
+const productsHeader = createH1WithClasses("products-header", "Our Products");
 
-productsContainer.append(jumbotron, productsHeader);
+const products = [1, 2, 3, 4, 5, 6];
+
+const productsDiv = createDivWithClasses("products-div flex");
+
+products.forEach((product) => {
+  const productItem = createDivWithClasses("product-item flex flex-centre-xy");
+  productItem.textContent = product;
+  productsDiv.append(productItem);
+});
+
+productsContainer.append(productsHeader, jumbotron, productsDiv);
 
 productsSection.append(slash, productsContainer);
 

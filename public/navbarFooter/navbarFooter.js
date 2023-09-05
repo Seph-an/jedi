@@ -105,6 +105,28 @@ const deliveryNum = createP();
 deliveryNum.className = "deliveryNum";
 deliveryNum.textContent = `Free Delivery for Orders Above Ksh: 5,000 | Call: +254 - 713 - 309 - 025`;
 
+//---------------------------------------------------
+
+// const welcome = createPWithClasses("contact-sub");
+
+// const welcomeSubPartOne = document.createTextNode("Hello");
+
+// const welcomeSubPartTwo = document.createTextNode(`${data.username}`);
+
+// const welcomeSubPartThree = document.createTextNode("Welcome!");
+
+// const welcomeSubSpan = document.createElement("span");
+
+// welcomeSubSpan.appendChild(welcomeSubPartTwo);
+
+// welcome.append(welcomeSubPartOne, welcomeSubSpan, welcomeSubPartThree);
+
+// const admin = createA();
+// admin.className = "admin";
+// admin.href = "/interface";
+
+//----------------------------------------------------
+
 const logInOut = createDivWithClasses("log-in-out");
 
 const login = createA();
@@ -127,9 +149,24 @@ fetch("/check-session")
   .then((data) => {
     if (data.loggedIn) {
       logInOut.appendChild(outIcon);
+      const welcome = createPWithClasses("welcome");
+      const welcomeSubPartOne = document.createTextNode("Hello ");
+      const welcomeSubPartTwo = document.createTextNode(`${data.username},`);
+      const welcomeSubPartThree = document.createTextNode(" Welcome!");
+      const welcomeSubSpan = document.createElement("span");
+      welcomeSubSpan.appendChild(welcomeSubPartTwo);
+      welcome.append(welcomeSubPartOne, welcomeSubSpan, welcomeSubPartThree);
+
+      const admin = createA();
+      admin.className = "admin";
+      admin.textContent = "Admin";
+      admin.href = "/interface";
+      deliveryLog.append(welcome, admin, logInOut);
+
       console.log("User is logged in:", data.username);
     } else {
       logInOut.appendChild(login);
+      deliveryLog.append(deliveryNum, logInOut);
       console.log("User is not logged in");
     }
   })
@@ -140,8 +177,6 @@ fetch("/check-session")
 const navRings = createImg();
 navRings.className = "navRings absolute img-settings";
 navRings.src = "../resources/imgs/topnavimg.svg";
-
-deliveryLog.append(deliveryNum, logInOut);
 
 topNavContainer.append(deliveryLog);
 
