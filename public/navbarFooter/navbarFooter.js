@@ -307,14 +307,28 @@ function createImage(classNames, src, tag) {
   img.tag = tag;
   return img;
 }
-function createInputField(classNames, type, placeholder, value, id, required) {
+//new change here on monday 11/09/2023-new attribute: 'name' added
+function createInputField(
+  classNames,
+  type,
+  placeholder,
+  value,
+  id,
+  required,
+  name,
+  multiple
+) {
   const inputElement = document.createElement("input");
   inputElement.type = type;
   inputElement.className = classNames;
   inputElement.placeholder = placeholder;
-  // inputElement.required = required;
-  inputElement.setAttribute("required", required);
   inputElement.value = value;
+  inputElement.setAttribute("required", required);
+  inputElement.setAttribute("name", name);
+  if (multiple) {
+    inputElement.setAttribute("multiple", "");
+  }
+
   return inputElement;
 }
 
@@ -327,7 +341,9 @@ function createLabelAndInput(
   placeholder,
   value,
   id,
-  required
+  required,
+  name,
+  multiple = false
 ) {
   const div = createDiv();
   div.className = "label-input flex flex-col";
@@ -335,13 +351,18 @@ function createLabelAndInput(
   const textarea = document.createElement("textarea");
   textarea.placeholder = placeholder;
   textarea.setAttribute("rows", "5");
+  textarea.id = id;
+  textarea.required = required;
+  textarea.name = name;
   const input = createInputField(
     classNames,
     type,
     placeholder,
     value,
     id,
-    required
+    required,
+    name,
+    multiple
   );
   const formLabel = createLabel();
   formLabel.textContent = label;

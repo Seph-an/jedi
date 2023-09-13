@@ -9,3 +9,56 @@
 /* .interface-container h1 {
 
 } */
+.upload-productform {
+  gap: 1rem;
+}
+.label-input {
+  width: 90%;
+  color: var(--color-five);
+}
+
+.label-input input {
+  font-size: 1rem;
+  background-color: transparent;
+  color: var(--secondary-color);
+  border: none;
+  border: 0.125rem var(--color-five) solid;
+  border-radius: 0.3125rem;
+  padding: 0.5rem;
+  transition: ease-in-out 0.3s;
+}
+
+.label-input input:focus,
+.label-input input:hover {
+  outline: none;
+  border-color: var(--tertiary-color);
+}
+
+.for-compulsory::after {
+  content: "*";
+  margin-left: 0.1875rem;
+  color: var(--color-eight);
+}
+.label-textarea {
+  color: var(--color-five);
+  width: 90%;
+}
+
+.label-input .submit-button {
+  background-color: var(--tertiary-color);
+  font-size: 1.25rem;
+  color: var(--color-two);
+  border: none;
+  font-weight: 600;
+  padding: 0.875rem;
+  cursor: pointer;
+  letter-spacing: 0.125rem;
+}
+.label-input .submit-button:hover,
+.label-input .submit-button:focus {
+  opacity: 0.8;
+}
+
+/* .product-submit{
+
+} */

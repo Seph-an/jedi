@@ -1,6 +1,6 @@
 tinymce.init({
   selector: "textarea#description",
-  width: 1000,
+  // width: `50%`,
   height: 300,
   plugins: [
     "advlist",

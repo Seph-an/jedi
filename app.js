@@ -118,6 +118,7 @@ app.post("/login", (req, res) => {
     }
   });
 });
+
 // Express.js backend route
 app.get("/check-session", (req, res) => {
   if (req.session.username) {
@@ -138,6 +139,80 @@ app.post("/logout", (req, res) => {
     } else {
       res.json({ success: true });
     }
+  });
+});
+
+//Upload product route
+app.post("/products", (req, res) => {
+  const { productData, imagesData } = req.body;
+
+  // Start a MySQL transaction
+  pool.beginTransaction((err) => {
+    if (err) {
+      console.error("Error starting transaction:", err);
+      res.status(500).json({ error: "Internal Server Error" });
+      return;
+    }
+
+    // Insert data into the Product table
+    const insertProductQuery = `INSERT INTO Product (Prod_Name, Prod_Description, Prod_Price_1, Prod_Price_2, Prod_InStock, Prod_OnOffer,Prod_Soon) VALUES (?, ?, ?, ?, ?, ?, ?)`;
+    pool.query(
+      insertProductQuery,
+      [
+        productData.Name,
+        productData.Description,
+        productData.Price1,
+        productData.Price2,
+        productData.InStock,
+        productData.OnOffer,
+        productData.Soon,
+      ],
+      (err, productResult) => {
+        if (err) {
+          console.error("Error inserting into Product:", err);
+          pool.rollback(() => {
+            res.status(500).json({ error: "Internal Server Error" });
+          });
+          return;
+        }
+
+        // Get the ProductID of the newly inserted product
+        const productId = productResult.insertId;
+
+        // Insert data into the ProductImages table
+        const insertProductImagesQuery = `INSERT INTO Images (Product_ID, Image_Path, Image_IsThumbnail, Image_SortOrder) VALUES (?, ?, ?, ?)`;
+        pool.query(
+          insertProductImagesQuery,
+          [
+            productId,
+            imagesData.ImageURL,
+            imagesData.IsThumbnail,
+            imagesData.SortOrder,
+          ],
+          (err, imagesResult) => {
+            if (err) {
+              console.error("Error inserting into ProductImages:", err);
+              pool.rollback(() => {
+                res.status(500).json({ error: "Internal Server Error" });
+              });
+              return;
+            }
+            // Commit the transaction
+            pool.commit((err) => {
+              if (err) {
+                console.error("Error committing transaction:", err);
+                pool.rollback(() => {
+                  res.status(500).json({ error: "Internal Server Error" });
+                });
+              } else {
+                console.log("Data inserted successfully");
+                res.status(200).json({ message: "Data inserted successfully" });
+              }
+            });
+          }
+        );
+      }
+    );
   });
 });
 
