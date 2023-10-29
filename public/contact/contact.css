@@ -3,7 +3,7 @@
 }
 
 .contact-container {
-  padding: 2rem 0;
+  padding: 11rem 0 2rem 0;
   z-index: -1;
   gap: 0.625rem;
   color: var(--secondary-color);

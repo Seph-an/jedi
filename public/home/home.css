@@ -6,7 +6,7 @@
 .heroSection {
   /* height: 300px; */
   /* background-color: burlywood; */
-  margin: 4rem 0 0.625rem 0;
+  margin: 12rem 0 0.625rem 0;
 }
 .heroCopy {
   flex: 1.5;
@@ -62,7 +62,8 @@
 /* ---------------------------------------------------------------- */
 .testimonialsHeader,
 .blogFeatureHeader,
-.glipseTitle {
+.glipseTitle,
+.products-header {
   color: var(--secondary-color);
   position: relative;
   padding: 0.3125rem 0 0.3125rem 0.5875rem;
@@ -71,7 +72,8 @@
 
 .testimonialsHeader::before,
 .blogFeatureHeader::before,
-.glipseTitle::before {
+.glipseTitle::before,
+.products-header::before {
   content: "";
   background-color: var(--primary-color);
   position: absolute;
@@ -88,8 +90,8 @@
 /* ---------------------Enter glimpse section-------------------------------- */
 
 #glimpse {
-  background-color: var(--color-four);
   /* background-color: var(--color-four); */
+  background-color: var(--color-two);
 
   /* background: linear-gradient(
     10deg,
@@ -111,12 +113,12 @@
   /* background-color: bisque; */
 }
 .glipseTitle {
-  color: var(--color-five);
+  /* color: var(--color-five); */
   padding-left: 1rem;
   padding-right: 0.625rem;
 }
 .glipseTitle::before {
-  background-color: var(--color-two);
+  background-color: var(--primary-color);
 }
 .subHead {
   color: var(--color-five);

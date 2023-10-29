@@ -1,3 +1,20 @@
+// fetch("/products", {
+//   method: "POST",
+// })
+//   .then((res) => {
+//     if (!res.ok) {
+//       throw new Error("Network response was not ok");
+//     }
+//     const resData = res.json();
+//     return resData;
+//   })
+//   .then((data) => {
+//     console.log("data returned is:", data);
+//   })
+//   .catch((err) => {
+//     console.log("the error is:", err);
+//   });
+
 const homeHeroSection = createSection();
 homeHeroSection.id = "homeHeroSection";
 homeHeroSection.className = "homeHeroSection flex flex-col";
@@ -413,6 +430,7 @@ document
   .append(
     homeHeroSection,
     glimpse,
+    productsSection,
     testimonials,
     blogFeatureSection,
     footerSection

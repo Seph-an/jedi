@@ -139,6 +139,14 @@ body {
   cursor: pointer;
 }
 /* -----------END Radio button styling ------------- */
+.navigationBar {
+  position: fixed;
+  top: 0;
+  /* right: 0;
+  left: 0; */
+  width: 100%;
+  z-index: 999;
+}
 .topNav {
   padding: 0.75rem;
   background-color: #1c1e5a;
@@ -315,9 +323,10 @@ body {
 .pop-up-none {
   display: none;
 }
+
 .pop-up {
-  padding: 2rem;
-  top: 12%;
+  padding: 3rem 2rem;
+  top: 43%;
   left: 50%;
   transform: translateX(-50%);
   width: 80%;
@@ -327,12 +336,10 @@ body {
   border-radius: 0.625rem;
   box-shadow: 0px 1px 7px 0px rgba(0, 0, 0, 0.25);
   transition: 0.3s ease-in-out;
+  z-index: 100;
   /* transition: ease-in-out 0.3s; */
 }
-.close-pop {
-  width: 1.5rem;
-  cursor: pointer;
-}
+
 .pop-div {
   width: 100%;
   gap: 0.5rem;

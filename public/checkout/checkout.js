@@ -1,4 +1,7 @@
-const checkoutSection = createSectionWithClasses("checkout-section");
+const checkoutSection = createSectionWithClasses(
+  "checkout-section",
+  "checkout-section"
+);
 
 const checkoutContainer = createDivWithClasses(
   "checkout-container flex flex-col flex-centre-y"
@@ -65,9 +68,24 @@ const clientSpecialDetails = createLabelAndInput(
   "",
   "client-special-details"
 );
+//Get total price
+let subTotalCheckout;
+
+subTotalCheckout = removePartFromString(
+  subtotalPrice.querySelector("span").textContent,
+  "Kes: "
+);
+
+const totPrice = document.querySelector(".total-price").textContent;
+console.log("the tot price is :", totPrice);
+
+const priceCheckout = addCommas(
+  removePartFromString(totPrice, "Total - Kes: ")
+);
+
 const amountDue = createH2WithClasses("amount-due");
 const amoutPartOne = document.createTextNode(`Amount due: `);
-const amountPartTwo = document.createTextNode("Ksh 4,000");
+const amountPartTwo = document.createTextNode(`Kes: ${priceCheckout}`);
 const amount = document.createElement("span");
 amount.append(amountPartTwo);
 amountDue.append(amoutPartOne, amount);
@@ -89,17 +107,17 @@ const onDelivery = createCustomRadio("on-delivery", "Cash on delivery");
 
 radioBtns.append(mpesa, payNow, onDelivery);
 
-const checkoutBtn = createButton(
+const checkoutBtn = createLabelAndInput(
+  "",
   false,
-  "checkout-btn",
+  false,
+  "checkout-btn form-btn",
+  "submit",
   "",
   "Complete order",
-  "",
-  "",
-  false,
-  true
+  "checkout-btn",
+  ""
 );
-
 checkoutForm.append(
   clientName,
   clientPhone,
@@ -139,17 +157,35 @@ radioButtons.forEach((radioButton) => {
   });
 });
 
-// const delegateClickToBody = document.body;
-// delegateClickToBody.addEventListener("click", clickFired);
+const delegateSubmitToBodyCheck = document.body;
+delegateSubmitToBodyCheck.addEventListener("submit", submitFiredCheck);
 
-// function clickFired(e) {
-//   if (e.target.classList.contains("radio-input")) {
-//     if (e.target.classList.contains("blue-bg")) {
-//       e.target.classList.remove("blue-bg");
-//       console.log("Background color changed to grey");
-//     } else {
-//       e.target.classList.add("blue-bg");
-//       console.log("Background color changed to blue");
-//     }
-//   }
-// }
+function submitFiredCheck(e) {
+  if (e.target.classList.contains("checkout-form")) {
+    e.preventDefault();
+    const form = e.target;
+    const finalTotal = removePartFromString(
+      amountDue.querySelector("span").textContent,
+      "Kes: "
+    );
+    const totalCheckout = Number(removePartFromString(finalTotal, ","));
+
+    const checkOutName = form.querySelector(".client-name").value;
+    const checkOutPhone = form.querySelector(".client-phone").value;
+    const checkOutMail = form.querySelector(".client-mail").value;
+    const checkOutLocation = form.querySelector(".client-location").value;
+    const checkOutSpecial = form.querySelector("textarea").value;
+    const checkOutPayNum = form.querySelector(".pay-now").value;
+
+    console.log("checkout form is:", form);
+    console.log("checkOutName form is:", checkOutName);
+    console.log("checkOutPhone form is:", checkOutPhone);
+    console.log("checkOutMail form is:", checkOutMail);
+    console.log("checkOutLocation form is:", checkOutLocation);
+    console.log("checkOutSpecial form is:", checkOutSpecial);
+    console.log("checkOutPayNum form is:", checkOutPayNum);
+    console.log("subtotalCheckout  is:", subTotalCheckout);
+    console.log("final total price  is:", finalTotal);
+    console.log("final final price  is:", totalCheckout);
+  }
+}

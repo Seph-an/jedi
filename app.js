@@ -3,6 +3,7 @@ const express = require("express");
 const session = require("express-session");
 const MySQLStore = require("express-mysql-session")(session);
 const mysql = require("mysql");
+const multer = require("multer");
 
 const app = express();
 require("dotenv").config();
@@ -142,80 +143,226 @@ app.post("/logout", (req, res) => {
   });
 });
 
-//Upload product route
-app.post("/products", (req, res) => {
-  const { productData, imagesData } = req.body;
+// Set up Multer storage
+const uploadsRoute = express.Router();
+const storage = multer.diskStorage({
+  destination: (req, file, cb) => {
+    cb(null, "public/uploaded-imgs/"); // Destination folder for uploaded images
+  },
+  filename: (req, file, cb) => {
+    const ext = file.originalname.match(/\.[0-9a-z]+$/i)[0];
+    cb(null, `${Date.now()}${ext}`);
+  },
+});
 
-  // Start a MySQL transaction
-  pool.beginTransaction((err) => {
-    if (err) {
-      console.error("Error starting transaction:", err);
-      res.status(500).json({ error: "Internal Server Error" });
-      return;
-    }
+const upload = multer({
+  storage: storage,
+  fields: [
+    { name: "productName" },
+    { name: "product-price" },
+    { name: "textarea" },
+  ],
+});
 
-    // Insert data into the Product table
-    const insertProductQuery = `INSERT INTO Product (Prod_Name, Prod_Description, Prod_Price_1, Prod_Price_2, Prod_InStock, Prod_OnOffer,Prod_Soon) VALUES (?, ?, ?, ?, ?, ?, ?)`;
-    pool.query(
-      insertProductQuery,
-      [
-        productData.Name,
-        productData.Description,
-        productData.Price1,
-        productData.Price2,
-        productData.InStock,
-        productData.OnOffer,
-        productData.Soon,
-      ],
-      (err, productResult) => {
+uploadsRoute.post(
+  "/uploads",
+  upload.array("product-images"),
+  async (req, res) => {
+    const files = req.files;
+    const data = req.body;
+
+    const productName = data.productName;
+    const productPrice = data.productPrice;
+    const productDescription = data.textarea;
+
+    const fileData = files.map((file) => ({
+      filename: file.filename,
+      originalname: file.originalname,
+      path: file.path,
+    }));
+
+    console.log("Received data:", data);
+    console.log("Received files:", fileData);
+
+    try {
+      // Begin a MySQL transaction
+      pool.getConnection(async (err, connection) => {
         if (err) {
-          console.error("Error inserting into Product:", err);
-          pool.rollback(() => {
-            res.status(500).json({ error: "Internal Server Error" });
-          });
-          return;
+          throw err;
         }
 
-        // Get the ProductID of the newly inserted product
-        const productId = productResult.insertId;
-
-        // Insert data into the ProductImages table
-        const insertProductImagesQuery = `INSERT INTO Images (Product_ID, Image_Path, Image_IsThumbnail, Image_SortOrder) VALUES (?, ?, ?, ?)`;
-        pool.query(
-          insertProductImagesQuery,
-          [
-            productId,
-            imagesData.ImageURL,
-            imagesData.IsThumbnail,
-            imagesData.SortOrder,
-          ],
-          (err, imagesResult) => {
+        // Start the transaction
+        await new Promise((resolve, reject) => {
+          connection.beginTransaction((err) => {
             if (err) {
-              console.error("Error inserting into ProductImages:", err);
-              pool.rollback(() => {
-                res.status(500).json({ error: "Internal Server Error" });
-              });
-              return;
+              connection.release();
+              reject(err);
+            } else {
+              resolve();
             }
-            // Commit the transaction
-            pool.commit((err) => {
-              if (err) {
-                console.error("Error committing transaction:", err);
-                pool.rollback(() => {
-                  res.status(500).json({ error: "Internal Server Error" });
-                });
-              } else {
-                console.log("Data inserted successfully");
-                res.status(200).json({ message: "Data inserted successfully" });
+          });
+        });
+
+        try {
+          let productId;
+          // Insert data into the `products` table
+          const productInsertQuery = `
+          INSERT INTO products (product_name, product_price, product_description)
+          VALUES (?, ?, ?)
+        `;
+          const productInsertValues = [
+            productName,
+            productPrice,
+            productDescription,
+          ];
+
+          await new Promise((resolve, reject) => {
+            connection.query(
+              productInsertQuery,
+              productInsertValues,
+              (err, results) => {
+                if (err) {
+                  connection.rollback(() => {
+                    connection.release();
+                    reject(err);
+                  });
+                } else {
+                  productId = results.insertId; // Assign the insertId value to productId
+                  resolve(productId);
+                  // resolve(results.insertId);
+                }
               }
+            );
+          });
+
+          // Insert data into the `products_images` table for each image
+          for (const image of fileData) {
+            const imageInsertQuery = `
+            INSERT INTO products_images (product_id, image_name, image_original_name, image_path)
+            VALUES (?, ?, ?, ?)
+          `;
+            const imageInsertValues = [
+              productId,
+              image.filename,
+              image.originalname,
+              image.path,
+            ];
+
+            await new Promise((resolve, reject) => {
+              connection.query(imageInsertQuery, imageInsertValues, (err) => {
+                if (err) {
+                  connection.rollback(() => {
+                    connection.release();
+                    reject(err);
+                  });
+                } else {
+                  resolve();
+                }
+              });
             });
           }
-        );
+
+          // Commit the transaction
+          await new Promise((resolve, reject) => {
+            connection.commit((err) => {
+              if (err) {
+                connection.rollback(() => {
+                  connection.release();
+                  reject(err);
+                });
+              } else {
+                resolve();
+              }
+            });
+          });
+
+          connection.release();
+          console.log("Transaction successfully committed.");
+          res.status(200).json({ message: "Data uploaded successfully" });
+        } catch (err) {
+          // Rollback the transaction in case of an error
+          connection.rollback(() => {
+            connection.release();
+            console.error("Transaction rolled back:", err);
+            res
+              .status(500)
+              .json({ error: "An error occurred during data upload." });
+          });
+        }
+      });
+    } catch (error) {
+      console.error("Upload error:", error.message);
+      res.status(500).json({ error: "An error occurred during file upload." });
+    }
+  }
+);
+
+app.use("/products-upload", uploadsRoute);
+
+//load products from db table
+app.post("/products", (req, res) => {
+  const query = `
+   SELECT products.*,
+   products_images.image_name, products_images.image_original_name,
+   products_images.image_path
+   FROM products
+   LEFT JOIN products_images ON products.product_id = products_images.product_id;
+ `;
+  pool.query(query, (err, results) => {
+    if (err) {
+      console.error("Error querying data:", err);
+      return res
+        .status(500)
+        .json({ error: "An error occurred while fetching data" });
+    }
+
+    // Create an object to store the formatted data
+    const formattedData = {};
+
+    // Iterate through the 'results' array and group by product_id
+    results.forEach((row) => {
+      const {
+        product_id,
+        product_name,
+        product_price,
+        product_description,
+        product_instock,
+        product_onoffer,
+      } = row;
+      const image = {
+        image_name: row.image_name,
+        image_original_name: row.image_original_name,
+        image_path: row.image_path,
+      };
+
+      // If the product_id doesn't exist in the formatted data, create an entry
+      if (!formattedData[product_id]) {
+        formattedData[product_id] = {
+          product_id,
+          product_name,
+          product_price,
+          product_description,
+          product_instock,
+          product_onoffer,
+          images: [image], // Create an array for images
+        };
+      } else {
+        // If the product_id already exists, just push the image into the images array
+        formattedData[product_id].images.push(image);
       }
-    );
+    });
+
+    // Convert the formattedData object into an array
+    const formattedResult = Object.values(formattedData);
+
+    // Now, formattedResult contains the desired format
+    console.log(formattedResult);
+    res.status(200).json(formattedResult);
+    // ----------------------------------------------
   });
 });
 
+//Server-Sent Events (SSE) or WebSocket
 // const port = 3000;
 const port = process.env.PORT;
 app.listen(port, () => {

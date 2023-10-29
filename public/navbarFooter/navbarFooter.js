@@ -105,28 +105,6 @@ const deliveryNum = createP();
 deliveryNum.className = "deliveryNum";
 deliveryNum.textContent = `Free Delivery for Orders Above Ksh: 5,000 | Call: +254 - 713 - 309 - 025`;
 
-//---------------------------------------------------
-
-// const welcome = createPWithClasses("contact-sub");
-
-// const welcomeSubPartOne = document.createTextNode("Hello");
-
-// const welcomeSubPartTwo = document.createTextNode(`${data.username}`);
-
-// const welcomeSubPartThree = document.createTextNode("Welcome!");
-
-// const welcomeSubSpan = document.createElement("span");
-
-// welcomeSubSpan.appendChild(welcomeSubPartTwo);
-
-// welcome.append(welcomeSubPartOne, welcomeSubSpan, welcomeSubPartThree);
-
-// const admin = createA();
-// admin.className = "admin";
-// admin.href = "/interface";
-
-//----------------------------------------------------
-
 const logInOut = createDivWithClasses("log-in-out");
 
 const login = createA();
@@ -327,6 +305,7 @@ function createInputField(
   inputElement.setAttribute("name", name);
   if (multiple) {
     inputElement.setAttribute("multiple", "");
+    inputElement.setAttribute("accept", ".png, .jpg, .jpeg, .svg");
   }
 
   return inputElement;
@@ -507,25 +486,6 @@ footerContainer.append(subscribeContainer, footerLinks);
 footer.append(footerWords);
 footerSection.append(footerContainer, footer);
 
-//cart funtionality
-//logged in and out functionality
-const currentPath = window.location.pathname;
-
-console.log("The current path is:", currentPath);
-
-// Get all anchor tags in the navigation
-const navigationLinks = document.querySelectorAll("nav a");
-console.log("Le links sont:", navigationLinks);
-
-// Iterate through the anchor tags
-navigationLinks.forEach((link) => {
-  // Compare the link's href with the current page's URL
-  if (link.href === currentPath) {
-    // Add a class to the active link
-    link.classList.add("active");
-  }
-});
-
 // const delegateSubmitToBody = document.body;
 // delegateSubmitToBody.addEventListener("submit", submitFired);
 
@@ -549,11 +509,56 @@ function clickFired(e) {
   }
 }
 
+//elements responsible for handling pop ups in the whole site
 const popUp = createDivWithClasses("pop-up pop-up-none absolute flex flex-col");
-const closePop = createImage(
-  "close-pop",
-  "../resources/imgs/close-pop.svg",
-  "Close"
-);
+
 const popDiv = createDivWithClasses("pop-div flex flex-col flex-centre-y");
-popUp.append(closePop, popDiv);
+popUp.appendChild(popDiv);
+
+//setting appropriate color on the active link in the navbar
+//E.g if on home page, `Home` link will be blue and so forth
+const currentPath = window.location.pathname;
+const currentURL = window.location.href;
+
+function currentpath() {
+  let desiredPath;
+  if (currentPath === "/") {
+    desiredPath = currentPath;
+    return desiredPath;
+  } else {
+    desiredPath = currentPath.slice(0, -1);
+    return desiredPath;
+  }
+}
+const desiredPath = currentpath();
+
+const pageLink = navlinks.querySelectorAll("a");
+const linkColor = "#1283fe";
+pageLink.forEach((link) => {
+  const path = removeDomainFromHref(link.href);
+
+  if (path !== null) {
+    if (path === desiredPath && path === "/" && link.textContent === "Home") {
+      link.style.color = linkColor;
+    } else if (path === desiredPath && path !== "/") {
+      link.style.color = linkColor;
+    } else if (currentURL.startsWith(window.location.origin + "/product")) {
+      if (link.textContent === "Products") {
+        link.style.color = linkColor;
+      }
+    }
+  } else {
+    console.log("Failed to parse URL.");
+  }
+});
+
+function removeDomainFromHref(href) {
+  try {
+    const url = new URL(href);
+    const path = url.pathname;
+    return path;
+  } catch (error) {
+    console.error("Invalid URL:", href);
+    return null;
+  }
+}

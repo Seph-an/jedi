@@ -4,16 +4,17 @@
   color: var(--color-five);
 }
 #ourStorySection {
+  padding-top: 8rem;
   background-color: var(--primary-color);
 }
 .the-path {
-  top: 4rem;
+  top: 10rem;
   left: 3rem;
   width: 14.375rem;
   opacity: 0.6;
 }
 .multi-rings {
-  top: 0;
+  top: 9rem;
   right: 0;
   width: 14.375rem;
   opacity: 0.6;

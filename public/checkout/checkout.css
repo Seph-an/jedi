@@ -3,7 +3,7 @@
   background: linear-gradient(90deg, #e6e7fb 32.71%, #bbbdfb 100%);
 }
 .checkout-container {
-  padding: 3rem 0;
+  padding: 11rem 0 3rem 0;
   gap: 1rem;
 }
 .checkout-header {
@@ -84,6 +84,26 @@
 /* .pay-now {
   width: inherit;
 } */
-.checkout-btn {
+#checkout-btn {
   margin-top: 2rem;
+  background-color: var(--tertiary-color);
+}
+/* .label-input:nth-child(5) {
+  background-color: var(--tertiary-color);
+} */
+
+.label-input .checkout-btn {
+  background-color: var(--tertiary-color);
+  color: var(--color-two);
+  padding: 1rem 0;
+  font-size: 1.25rem;
+  border: none;
+  font-weight: 700;
+  letter-spacing: 0.1875rem;
+  box-shadow: 0px 2px 4px 0px rgba(42, 2, 172, 0.25);
+}
+.label-input .checkout-btn:hover,
+.label-input .checkout-btn:focus {
+  opacity: 0.83;
+  transform: scaleX(1.01);
 }

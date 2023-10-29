@@ -1,3 +1,20 @@
+// fetch("/products", {
+//   method: "POST",
+// })
+//   .then((res) => {
+//     if (!res.ok) {
+//       throw new Error("Network response was not ok");
+//     }
+//     const resData = res.json();
+//     return resData;
+//   })
+//   .then((data) => {
+//     console.log("data returned is:", data);
+//   })
+//   .catch((err) => {
+//     console.log("the error is:", err);
+//   });
+
 const interfaceSection = createSectionWithClasses(
   "interface-section",
   "interface-section"
@@ -17,66 +34,28 @@ const productName = createLabelAndInput(
   "Product name:",
   true,
   false,
-  "product-name",
+  "product-name text-or-number",
   "text",
   "Enter name of product",
   "",
   "product-name",
   "required",
-  ""
+  "productName"
 );
 
-const productOldPrice = createLabelAndInput(
-  "Product old price:",
+const productPrice = createLabelAndInput(
+  "Product price:",
   true,
   false,
-  "product-price-old",
+  "product-price text-or-number",
   "number",
   "Enter price of product",
   "",
-  "product-price-old",
+  "product-price",
   "required",
-  ""
+  "productPrice"
 );
 
-const productNewPrice = createLabelAndInput(
-  "Product new price:",
-  false,
-  false,
-  "product-price-new",
-  "number",
-  "You can ignore",
-  "",
-  "product-price-new",
-  "required",
-  ""
-);
-
-const productStock = createLabelAndInput(
-  "Is product in stock?:",
-  true,
-  false,
-  "product-instock",
-  "text",
-  "Enter 'YES' or 'NO'",
-  "",
-  "product-instock",
-  "required",
-  ""
-);
-
-const productOffer = createLabelAndInput(
-  "Is product on offer?:",
-  true,
-  false,
-  "product-onoffer",
-  "text",
-  "Enter 'YES' or 'NO'",
-  "",
-  "product-onoffer",
-  "required",
-  ""
-);
 const productFiles = createLabelAndInput(
   "Attach product images:",
   true,
@@ -87,7 +66,7 @@ const productFiles = createLabelAndInput(
   "",
   "product-images",
   "required",
-  "",
+  "product-images",
   true
 );
 
@@ -116,31 +95,13 @@ const productButton = createLabelAndInput(
   "required",
   ""
 );
-const productBtn = createButton(
-  false,
-  "product-submit",
-  "",
-  "Post Product",
-  "",
-  "",
-  false,
-  true
-);
-// const description = document.createElement("textarea");
-// description.name = "textarea";
-// description.id = "description";
-// description.className = "description";
 
 uploadProductForm.append(
   productName,
-  productOldPrice,
-  productNewPrice,
-  productStock,
-  productOffer,
+  productPrice,
   productFiles,
   productDescription,
   productButton
-  //   productBtn
 );
 
 interfaceContainer.append(interfaceHeader, uploadProductForm);
@@ -154,24 +115,103 @@ const interfaceClick = document.body;
 interfaceClick.addEventListener("click", interfaceClickFired);
 
 function interfaceClickFired(e) {
-  e.preventDefault();
   if (e.target.classList.contains("submit-button")) {
+    console.log("submit clicked");
+    e.preventDefault();
     const form = e.target.closest("form");
-    const inputs = form.querySelectorAll("input");
-    inputs.forEach((input) => {
-      if (input.className !== "submit-button") {
-        if (input.className !== "product-price-new" && input.value == "") {
-          console.log("fields cannot be left empty");
-        }
-        console.log("Theinput value is:", input.value);
-        console.log("Theinput class is:", input.className);
-      }
-    });
-    console.log("The inputs are:", inputs);
+
+    const textOrNumberInputs = form.querySelectorAll(".text-or-number");
+
+    const fileSelected = form.querySelector(".product-images");
+    const imagesFiles = fileSelected.files;
 
     const tinymceEditor = tinymce.get("description");
+
     const content = tinymceEditor.getContent();
 
-    console.log("TinyMCE content is:", content);
+    let isAnyInputEmpty = false; // Initialize the flag as false
+
+    let productPrice;
+    let productName;
+    textOrNumberInputs.forEach((input) => {
+      if (input.value === "") {
+        isAnyInputEmpty = true; // Set the flag to true if any input is empty
+      }
+      if (input.name == "productName") {
+        productName = input.value;
+      } else {
+        productPrice = input.value;
+      }
+    });
+
+    if (content === "" || isAnyInputEmpty) {
+      console.log("Fields cannot be empty.");
+    } else {
+      //   handleFileUpload(imagesFiles, inputArray);
+      if (imagesFiles.length === 0) {
+        console.log("No files selected.");
+      } else {
+        console.log("Good to go.");
+        handleSubmitProducts(productName, productPrice, imagesFiles, content);
+      }
+    }
   }
+}
+
+function handleFileUpload(fileInput, inputArray) {
+  const maxFileSizeInBytes = 1024 * 1024; // 1 MB (adjust to your desired limit)
+  //   const selectedFiles = fileInput.files;
+
+  for (let i = 0; i < fileInput.length; i++) {
+    const file = fileInput[i];
+
+    if (file.size > maxFileSizeInBytes) {
+      console.log(
+        `File "${file.name}" size exceeds the allowed limit (1 MB).
+            Please choose a smaller file.`
+      );
+      fileInput.value = ""; // Clear the file input to allow selecting a different file
+    } else {
+      // Valid file, push it to inputArray
+      inputArray.push({
+        fileName: file.name,
+        fileSize: file.size,
+      });
+    }
+  }
+}
+
+function handleSubmitProducts(productName, productPrice, imagesFiles, content) {
+  console.log("Handle submit called");
+  console.log("Filelist:", imagesFiles);
+
+  const formData = new FormData();
+  formData.append("productName", productName);
+  formData.append("productPrice", productPrice);
+  //   formData.append("product-images", imagesFiles);
+  for (let i = 0; i < imagesFiles.length; i++) {
+    formData.append("product-images", imagesFiles[i]);
+  }
+  formData.append("textarea", content);
+
+  const urlProductsUpload = "http://localhost:3000/products-upload/uploads";
+  const optionsProductsUpload = {
+    method: "POST",
+    body: formData,
+  };
+
+  fetch(urlProductsUpload, optionsProductsUpload)
+    .then((response) => {
+      if (response.ok) {
+        // Handle a successful response from the server
+        console.log("Form data submitted successfully.");
+      } else {
+        // Handle errors or server responses
+        console.error("Form data submission failed.");
+      }
+    })
+    .catch((error) => {
+      // Handle network errors
+      console.error("Network error:", error);
+    });
 }

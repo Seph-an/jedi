@@ -1,0 +1,213 @@
+.product-section {
+  background-color: var(--primary-color);
+}
+.product-doodle {
+  width: 6rem;
+  /* z-index: -2; */
+  top: 40%;
+  left: 3.5rem;
+  /* opacity: 0.6; */
+}
+.product-container {
+  margin: 0 auto;
+  padding: 11rem 0 3rem 0;
+  /* background-color: blue; */
+}
+.product-details-container {
+  width: 100%;
+  z-index: 3;
+  /* background-color: yellow; */
+  /* padding: 10px; */
+}
+.detail-header {
+  color: var(--tertiary-color);
+  /* color: var(--secondary-color); */
+  font-family: var(--secondary-font-two);
+  font-size: 1.75rem;
+  font-weight: 600;
+  padding: 1rem 0 3rem 0;
+}
+.product-detail {
+  width: 100%;
+  height: 500px;
+  gap: 0.625rem;
+}
+.carousel {
+  width: 50%;
+  height: 100%;
+  border-radius: 1rem;
+  background-color: rgb(211, 251, 237);
+}
+.carousel > ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.slide {
+  inset: 0;
+  opacity: 0;
+  transition: 0.5s ease-in-out;
+  /* transition: 200ms opacity ease-in-out; */
+  /* transition-delay: 0.3s; */
+  /* transition-delay: 200ms; */
+}
+.slide[data-active] {
+  opacity: 1;
+  transition-delay: 0.3s;
+  z-index: 1;
+}
+.slide > img {
+  /* display: block; */
+  width: 60%;
+  max-height: 90%;
+}
+.carousel-btn {
+  top: 50%;
+  transform: translateY(-50%);
+  background-color: rgba(0, 0, 0, 0.1);
+  padding: 0.3125rem 1rem;
+  border-radius: 0.3125rem;
+  z-index: 6;
+  cursor: pointer;
+  transition: ease-in-out 0.3s;
+}
+.carousel-btn:hover,
+.carousel-btn:focus {
+  background-color: rgba(0, 0, 0, 0.2);
+}
+.carousel-btn > img {
+  width: 1.25rem;
+}
+.prev {
+  left: 1rem;
+}
+.next {
+  right: 1rem;
+}
+/* 
+.carousel-container {
+  width: 100%;
+  height: 100%;
+  transition: transform 0.5s;
+}
+
+.carousel-slide {
+  transition: transform 0.5s;
+  min-width: 100%;
+  display: flex;
+  flex: 0 0 auto;
+  justify-content: center;
+  align-items: center;
+}
+
+.carousel img {
+  width: 50%;
+  max-height: 90%;
+} */
+
+.detail-description-plus {
+  border: 0.125rem solid var(--tertiary-color);
+  /* border: 0.125rem solid var(--color-five); */
+  border-radius: 1rem;
+  width: 50%;
+  padding: 1rem;
+  gap: 1rem;
+}
+.description-title {
+  font-size: 1.25rem;
+  font-weight: 800;
+  color: var(--tertiary-color);
+  /* color: var(--color-five); */
+  text-align: center;
+}
+.description {
+  overflow: scroll;
+  height: 70%;
+  width: 100%;
+  /* background-color: var(--color-seven); */
+  /* background-color: var(--color-two); */
+  /* background-color: #f3fde8; */
+  /* background-color: rgb(251, 250, 211); */
+  background-color: rgb(211, 251, 237);
+  gap: 1rem;
+  color: var(--secondary-color);
+  cursor: pointer;
+}
+.price-div {
+  width: 100%;
+  font-size: 1.125rem;
+  color: rgb(51, 50, 50);
+}
+.add-plus-qty {
+  width: 100%;
+  gap: 0.625rem;
+}
+.to-cart {
+  padding: 0.5rem;
+  background-color: var(--tertiary-color);
+  flex: 1;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  color: var(--color-two);
+  border-radius: 0.3125rem;
+  box-shadow: 0px 1px 6px 0px rgba(0, 0, 0, 0.25);
+  cursor: pointer;
+  transition: ease-in-out 0.3s;
+}
+.to-cart:focus,
+.to-cart:hover {
+  opacity: 0.83;
+  transform: scaleX(1.01);
+}
+.to-cart img {
+  width: 1.75rem;
+}
+.to-cart p {
+  font-size: 1.125rem;
+  /* font-weight: 600; */
+}
+.price-product {
+  font-size: 1.25rem;
+  /* font-weight: 600; */
+}
+.prod-qty {
+  flex: 1;
+  border-radius: 0.3125rem;
+  /* background-color: lavenderblush; */
+  gap: 0.3125rem;
+}
+.prod-qty .decin-btn {
+  width: 1.25rem;
+}
+.prod-qty .inc,
+.prod-qty .dec {
+  height: 80%;
+  padding: 0.5rem 1rem;
+}
+/* .prod-qty .increase,
+.prod-qty .decrease {
+  height: 80%;
+  padding: 0.5rem 1rem;
+} */
+.prod-qty .quantity {
+  font-size: 1.25rem;
+  padding: 0 1rem;
+  /* font-weight: 500; */
+}
+/* .description p {
+  margin-top: 0.3125rem;
+} */
+#more-section {
+  background-color: rgb(211, 251, 237);
+}
+.more-container {
+  margin: 0 auto;
+  padding: 3rem 0;
+  color: var(--secondary-color);
+}
+.more-title {
+  font-size: 1.5rem;
+  /* font-family: var(--secondary-font-two); */
+  /* color: var(--secondary-color); */
+}
