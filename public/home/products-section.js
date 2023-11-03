@@ -1,3 +1,17 @@
+// const sseDataElement = document.getElementById('sse-data');
+
+const eventSource = new EventSource("/sse");
+
+eventSource.onmessage = (event) => {
+  const eventData = event.data;
+  // sseDataElement.innerHTML += `<p>${eventData}</p>`;
+  console.log("The new data is", eventData);
+};
+
+eventSource.onerror = (error) => {
+  console.error("SSE error:", error);
+};
+
 const productsSection = createSectionWithClasses(
   "products-section",
   "products-section relative"

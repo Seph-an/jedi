@@ -261,12 +261,6 @@ function cartClickFired(e) {
     const cartField = document.querySelector(".cart-field");
     cartField.classList.toggle("cart-field-on");
   }
-  // else if (e.target.classList.contains("product-details")) {
-  //   if (currentURL.startsWith(window.location.origin + "/product")) {
-  //     e.preventDefault();
-  //     console.log("We in the product page!!");
-  //   }
-  // }
 }
 // ************* We can use path so that whatever functionality only
 //applies in the desired path
@@ -324,7 +318,6 @@ function updateCartItemQuantity(e, increment) {
   const unitPrice = parent.getAttribute("unit-price") * 1;
 
   const cartPriceElement = parent.querySelector(".cartfield-price");
-
   let quantity = parseInt(quantityElement.textContent);
 
   if (increment) {

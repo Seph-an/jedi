@@ -91,10 +91,6 @@ pages.forEach((page) => {
   }
 });
 
-// app.get("/interface", isAuthenticated, (req, res) => {
-//   res.render("interface");
-// });
-
 // Login route
 app.post("/login", (req, res) => {
   const username = req.body.user;
@@ -278,6 +274,10 @@ uploadsRoute.post(
 
           connection.release();
           console.log("Transaction successfully committed.");
+
+          // Trigger an SSE event to notify clients of new changes
+          sendSSEUpdate(res);
+
           res.status(200).json({ message: "Data uploaded successfully" });
         } catch (err) {
           // Rollback the transaction in case of an error
@@ -363,6 +363,37 @@ app.post("/products", (req, res) => {
 });
 
 //Server-Sent Events (SSE) or WebSocket
+// SSE endpoint
+app.get("/sse", (req, res) => {
+  res.setHeader("Content-Type", "text/event-stream");
+  res.setHeader("Cache-Control", "no-cache");
+
+  // // Send a simple real-time clock update every second
+  // const sendTime = () => {
+  //   const currentTime = new Date().toLocaleTimeString();
+  //   res.write(`data: ${currentTime}\n\n`);
+  // };
+
+  // setInterval(sendTime, 1000);
+  // sendTime(); // Send the initial time immediately
+
+  // Send a welcome message to the client when they connect
+  res.write("data: Welcome to the SSE endpoint\n\n");
+
+  // Close the connection when the client disconnects
+  req.on("close", () => {
+    clearInterval(sendTime);
+  });
+});
+
+function sendSSEUpdate(res) {
+  // Notify the connected client about the data update
+  // Replace this with your actual data update logic
+  const updatedData = "New data is available!";
+  // Send an SSE event to the client
+  res.write(`data: ${updatedData}\n\n`);
+}
+
 // const port = 3000;
 const port = process.env.PORT;
 app.listen(port, () => {

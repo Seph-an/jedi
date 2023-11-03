@@ -206,7 +206,7 @@ const links = [
   { href: "/", text: "" },
   { href: "/", text: "Home" },
   { href: "/#testimonials", text: "Testimonials" },
-  { href: "/products", text: "Products" },
+  { href: "/#products-section", text: "Products" },
   { href: "/about", text: "About" },
   { href: "/contact", text: "Contact" },
   { href: "https://www.blog.jedipetfoods.com", text: "Blog" },
